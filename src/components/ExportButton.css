@@ -1,0 +1,117 @@
+.export-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(88, 127, 178, 0.3);
+  white-space: nowrap;
+}
+
+.export-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(88, 127, 178, 0.4);
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+}
+
+.export-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(88, 127, 178, 0.3);
+}
+
+.export-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: 0 2px 8px rgba(88, 127, 178, 0.2);
+}
+
+.export-button-icon {
+  flex-shrink: 0;
+}
+
+.export-button-icon.spinning {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Notifications d'export */
+.export-success-notification,
+.export-error-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 14px;
+  z-index: 1000;
+  animation: slideIn 0.3s ease-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.export-success-notification {
+  background: linear-gradient(135deg, #4caf50, #45a049);
+  color: white;
+}
+
+.export-error-notification {
+  background: linear-gradient(135deg, #f44336, #d32f2f);
+  color: white;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .export-button {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+  
+  .export-success-notification,
+  .export-error-notification {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    font-size: 13px;
+  }
+}
+
+/* Thème sombre */
+[data-theme="dark"] .export-button {
+  box-shadow: 0 4px 12px rgba(88, 127, 178, 0.2);
+}
+
+[data-theme="dark"] .export-button:hover:not(:disabled) {
+  box-shadow: 0 6px 16px rgba(88, 127, 178, 0.3);
+}
+
+[data-theme="dark"] .export-success-notification,
+[data-theme="dark"] .export-error-notification {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}

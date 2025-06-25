@@ -102,4 +102,36 @@ export class DataService {
   static clearAllData(): void {
     localStorage.removeItem(STORAGE_KEY);
   }
+
+  // Méthode pour créer des données de test
+  static createTestData(): void {
+    const testEntries: DailyEntry[] = [];
+    const today = new Date();
+    
+    // Créer 7 jours de données de test
+    for (let i = 0; i < 7; i++) {
+      const date = new Date(today);
+      date.setDate(date.getDate() - i);
+      
+      const pillars = [
+        { id: 'nutrition', name: 'Alimentation', icon: '🥗', color: '#4CAF50', score: Math.round(60 + Math.random() * 40), questions: [] },
+        { id: 'sport', name: 'Sport', icon: '🏃', color: '#FF9800', score: Math.round(50 + Math.random() * 50), questions: [] },
+        { id: 'sleep', name: 'Sommeil', icon: '😴', color: '#9C27B0', score: Math.round(65 + Math.random() * 35), questions: [] },
+        { id: 'stress', name: 'Stress/Équilibre', icon: '🧘', color: '#00BCD4', score: Math.round(45 + Math.random() * 55), questions: [] },
+        { id: 'spirituality', name: 'Spiritualité', icon: '✨', color: '#673AB7', score: Math.round(40 + Math.random() * 60), questions: [] },
+        { id: 'social', name: 'Social', icon: '👥', color: '#E91E63', score: Math.round(60 + Math.random() * 40), questions: [] }
+      ];
+      
+      const globalScore = Math.round(pillars.reduce((sum, p) => sum + p.score, 0) / pillars.length);
+      
+      testEntries.push({
+        date: format(date, 'yyyy-MM-dd'),
+        pillars,
+        globalScore,
+        timestamp: date.getTime()
+      });
+    }
+    
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(testEntries));
+  }
 }

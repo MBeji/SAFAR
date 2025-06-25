@@ -2,11 +2,12 @@ import { useState, useEffect } from 'react';
 import Home from './components/Home';
 import Journal from './components/Journal';
 import Stats from './components/Stats';
+import TestExport from './TestExport';
 import { ThemeService } from './services/ThemeService';
 import { NotificationService } from './services/NotificationService';
 import './App.css';
 
-type Page = 'home' | 'journal' | 'stats';
+type Page = 'home' | 'journal' | 'stats' | 'test';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
@@ -31,6 +32,8 @@ function App() {
         return <Journal onNavigate={handleNavigate} />;
       case 'stats':
         return <Stats onNavigate={handleNavigate} />;
+      case 'test':
+        return <TestExport />;
       default:
         return <Home onNavigate={handleNavigate} />;
     }

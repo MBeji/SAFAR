@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import type { DailyEntry } from '../types';
 import { DataService } from '../services/DataService';
 import { ArrowLeft, TrendingUp, Calendar, BarChart3 } from 'lucide-react';
+import { ExportButton } from './ExportButton';
 import { 
   LineChart, 
   Line, 
@@ -21,7 +22,7 @@ import {
 import './Stats.css';
 
 interface StatsProps {
-  onNavigate: (page: 'home' | 'journal' | 'stats') => void;
+  onNavigate: (page: 'home' | 'journal' | 'stats' | 'test') => void;
 }
 
 const Stats: React.FC<StatsProps> = ({ onNavigate }) => {
@@ -114,8 +115,7 @@ const Stats: React.FC<StatsProps> = ({ onNavigate }) => {
   const worstDay = getWorstDay();
 
   return (
-    <div className="stats-container">
-      <header className="stats-header">
+    <div className="stats-container">      <header className="stats-header">
         <button 
           className="back-button"
           onClick={() => onNavigate('home')}
@@ -123,19 +123,22 @@ const Stats: React.FC<StatsProps> = ({ onNavigate }) => {
           <ArrowLeft size={20} />
         </button>
         <h1>Statistiques</h1>
-        <div className="view-toggle">
-          <button 
-            className={`toggle-button ${viewMode === 'week' ? 'active' : ''}`}
-            onClick={() => setViewMode('week')}
-          >
-            7J
-          </button>
-          <button 
-            className={`toggle-button ${viewMode === 'month' ? 'active' : ''}`}
-            onClick={() => setViewMode('month')}
-          >
-            30J
-          </button>
+        <div className="header-actions">
+          <ExportButton className="export-btn" />
+          <div className="view-toggle">
+            <button 
+              className={`toggle-button ${viewMode === 'week' ? 'active' : ''}`}
+              onClick={() => setViewMode('week')}
+            >
+              7J
+            </button>
+            <button 
+              className={`toggle-button ${viewMode === 'month' ? 'active' : ''}`}
+              onClick={() => setViewMode('month')}
+            >
+              30J
+            </button>
+          </div>
         </div>
       </header>
 

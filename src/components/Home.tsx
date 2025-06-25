@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import type { DailyEntry } from '../types';
 import { DataService } from '../services/DataService';
 import { Calendar, TrendingUp, Edit3, Bell, HelpCircle } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
+import ThemeToggleAdvanced from './ThemeToggleAdvanced';
 import NotificationSettings from './NotificationSettings';
 import DailyTips from './DailyTips';
 import WeeklyGoals from './WeeklyGoals';
@@ -90,7 +90,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onOpenQuickStart }) => {
             >
               <Bell size={18} />
             </button>
-            <ThemeToggle />
+            <ThemeToggleAdvanced />
           </div>
         </div>
         <p className="date">

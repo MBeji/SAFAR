@@ -212,14 +212,25 @@ const Stats: React.FC<StatsProps> = ({ onNavigate }) => {
                       borderRadius: '8px',
                       color: 'white'
                     }}
-                  />
-                  <Line 
+                  />                  <Line 
                     type="monotone" 
                     dataKey="score" 
                     stroke="#10B981" 
-                    strokeWidth={3}
-                    dot={{ fill: '#10B981', strokeWidth: 2, r: 4 }}
-                    activeDot={{ r: 6, stroke: '#10B981', strokeWidth: 2 }}
+                    strokeWidth={4}
+                    dot={{ 
+                      fill: '#10B981', 
+                      strokeWidth: 2, 
+                      r: 6,
+                      filter: 'drop-shadow(0 2px 4px rgba(16, 185, 129, 0.4))'
+                    }}
+                    activeDot={{ 
+                      r: 8, 
+                      fill: '#10B981',
+                      stroke: '#fff',
+                      strokeWidth: 3,
+                      filter: 'drop-shadow(0 2px 8px rgba(16, 185, 129, 0.6))'
+                    }}
+                    filter="drop-shadow(0 2px 4px rgba(16, 185, 129, 0.3))"
                   />
                 </LineChart>
               </ResponsiveContainer>

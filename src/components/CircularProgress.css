@@ -1,0 +1,100 @@
+.circular-progress {
+  position: relative;
+  display: inline-block;
+}
+
+.circular-progress-svg {
+  transform: rotate(-90deg);
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1));
+}
+
+.circular-progress-bar {
+  transition: stroke-dashoffset 0.5s ease-in-out;
+  animation: drawProgress 2s ease-out forwards;
+}
+
+.circular-progress-glow {
+  opacity: 0.6;
+  transition: stroke-dashoffset 0.5s ease-in-out;
+  animation: drawProgress 2s ease-out forwards, glow 2s ease-in-out infinite alternate;
+}
+
+.circular-progress-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.circular-progress-score {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  animation: countUp 2s ease-out;
+}
+
+@keyframes drawProgress {
+  from {
+    stroke-dashoffset: inherit;
+  }
+  to {
+    stroke-dashoffset: inherit;
+  }
+}
+
+@keyframes glow {
+  0% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Radar des piliers */
+.pillars-radar {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 20px;
+  margin: 20px 0;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.pillars-radar .recharts-pie-sector {
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+  transition: all 0.3s ease;
+}
+
+.pillars-radar .recharts-pie-sector:hover {
+  filter: drop-shadow(0 4px 16px rgba(0, 0, 0, 0.4));
+  transform: scale(1.05);
+}
+
+/* Animations pour les graphiques */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.pillars-radar {
+  animation: fadeInScale 0.8s ease-out;
+}

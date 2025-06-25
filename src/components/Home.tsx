@@ -4,6 +4,7 @@ import { DataService } from '../services/DataService';
 import { Calendar, TrendingUp, Edit3, Bell } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import NotificationSettings from './NotificationSettings';
+import { CircularProgress, PillarsRadar } from './CircularProgress';
 import { useNotifications } from '../hooks/useNotifications';
 import './Home.css';
 
@@ -50,15 +51,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       setTodayEntry(newEntry);
     } else {
       setTodayEntry(entry);
-    }
-    setIsLoading(false);
-  };
-
-  const getScoreColor = (score: number): string => {
-    if (score >= 80) return '#10B981'; // Vert
-    if (score >= 60) return '#F59E0B'; // Orange
-    if (score >= 40) return '#EF4444'; // Rouge
-    return '#6B7280'; // Gris
+    }    setIsLoading(false);
   };
 
   const getScoreText = (score: number): string => {
@@ -76,13 +69,12 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
       </div>
     );
   }
-
   return (
-    <div className="home-container">      <header className="home-header">        <div className="header-content">
+    <div className="home-container">      <header className="home-header animate-slide-up">        <div className="header-content">
           <h1>Mon Bien-être</h1>
           <div className="header-actions">
             <button 
-              className="notification-button"
+              className="notification-button hover-glow"
               onClick={() => setShowNotificationSettings(true)}
               title="Paramètres de notifications"
             >
@@ -100,26 +92,26 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
             day: 'numeric' 
           })}
         </p>
-      </header>
-
-      <div className="global-score-card">
+      </header>      <div className="global-score-card animate-scale hover-lift">
         <div className="score-circle">
-          <span 
-            className="score-number"
-            style={{ color: getScoreColor(todayEntry?.globalScore || 0) }}
-          >
-            {todayEntry?.globalScore || 0}%
-          </span>
+          <CircularProgress 
+            score={todayEntry?.globalScore || 0}
+            size={140}
+            strokeWidth={10}
+            animationDuration={2000}
+          />
           <span className="score-label">Score Global</span>
         </div>
         <p className="score-description">
           {getScoreText(todayEntry?.globalScore || 0)}
         </p>
-      </div>
-
-      <div className="pillars-grid">
-        {todayEntry?.pillars.map((pillar) => (
-          <div key={pillar.id} className="pillar-card">
+      </div>      <div className="pillars-grid animate-slide-left">
+        {todayEntry?.pillars.map((pillar, index) => (
+          <div 
+            key={pillar.id} 
+            className="pillar-card hover-lift"
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
             <div className="pillar-header">
               <span className="pillar-icon">{pillar.icon}</span>
               <span className="pillar-name">{pillar.name}</span>
@@ -144,9 +136,21 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
                 }}
               ></div>
             </div>
-          </div>
-        ))}
-      </div>      <div className="action-buttons">
+          </div>        ))}
+      </div>
+
+      {/* Radar des piliers */}
+      {todayEntry && (
+        <PillarsRadar 
+          pillars={todayEntry.pillars.map(p => ({
+            name: p.name,
+            score: p.score,
+            color: p.color
+          }))}
+        />
+      )}
+
+      <div className="action-buttons">
         <button 
           className="action-button primary"
           onClick={() => onNavigate('journal')}

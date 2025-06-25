@@ -22,12 +22,11 @@ export const CircularProgress: React.FC<CircularProgressProps> = ({
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (score / 100) * circumference;
-
   const getScoreColor = (score: number): string => {
-    if (score >= 80) return '#4CAF50'; // Vert
-    if (score >= 60) return '#FF9800'; // Orange
-    if (score >= 40) return '#FFC107'; // Jaune
-    return '#F44336'; // Rouge
+    if (score >= 80) return '#34D399'; // Vert menthe doux
+    if (score >= 60) return '#FBBF24'; // Jaune doré doux
+    if (score >= 40) return '#FB923C'; // Orange pêche doux
+    return '#F87171'; // Rouge corail doux
   };
 
   const scoreColor = color === '#4CAF50' ? getScoreColor(score) : color;

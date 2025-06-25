@@ -3,7 +3,7 @@
   align-items: center;
   gap: 8px;
   padding: 12px 20px;
-  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  background: linear-gradient(135deg, #8B7CF6, #A78BFA);
   color: white;
   border: none;
   border-radius: 12px;
@@ -11,14 +11,14 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(88, 127, 178, 0.3);
+  box-shadow: 0 4px 12px rgba(139, 124, 246, 0.3);
   white-space: nowrap;
 }
 
 .export-button:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(88, 127, 178, 0.4);
-  background: linear-gradient(135deg, var(--primary-dark), var(--primary-color));
+  box-shadow: 0 6px 16px rgba(139, 124, 246, 0.4);
+  background: linear-gradient(135deg, #A78BFA, #8B7CF6);
 }
 
 .export-button:active {

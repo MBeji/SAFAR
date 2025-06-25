@@ -236,13 +236,12 @@ export class ExportService {
       console.warn('Erreur lors de l\'ajout des graphiques:', error);
     }
   }
-
   /**
    * Retourne la couleur correspondant à un score
    */
   private static getScoreColor(score: number): { r: number; g: number; b: number } {
-    if (score >= 80) return { r: 76, g: 175, b: 80 }; // Vert
-    if (score >= 60) return { r: 255, g: 193, b: 7 }; // Orange
-    return { r: 244, g: 67, b: 54 }; // Rouge
+    if (score >= 80) return { r: 52, g: 211, b: 153 }; // Vert menthe doux
+    if (score >= 60) return { r: 251, g: 191, b: 36 }; // Jaune doré doux
+    return { r: 248, g: 113, b: 113 }; // Rouge corail doux
   }
 }

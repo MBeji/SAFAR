@@ -10,9 +10,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #f8fafc;
-  color: #1a202c;
+  background: var(--color-background);
+  color: var(--color-text);
   overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .App {
@@ -20,22 +21,22 @@ body {
   min-height: 100vh;
 }
 
-/* Scrollbar styling */
+/* Scrollbar styling - Apple Health Style */
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-surface);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--color-primary);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.5);
+  background: var(--color-secondary);
 }
 
 /* Responsive container */
@@ -45,10 +46,10 @@ body {
   }
 }
 
-/* Focus styles pour l'accessibilité */
+/* Focus styles pour l'accessibilité - Apple Health Style */
 button:focus-visible,
 input:focus-visible {
-  outline: 2px solid #3B82F6;
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
 }
 

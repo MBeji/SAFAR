@@ -330,12 +330,12 @@
 }
 
 .action-button.primary {
-  background: linear-gradient(45deg, #10B981, #059669);
+  background: var(--gradient-success);
   color: white;
 }
 
 .action-button.primary:hover {
-  background: linear-gradient(45deg, #059669, #047857);
+  background: linear-gradient(45deg, #32D74B, #30D158);
   transform: translateY(-1px);
 }
 

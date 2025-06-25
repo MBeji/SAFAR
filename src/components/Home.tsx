@@ -5,6 +5,8 @@ import { Calendar, TrendingUp, Edit3, Bell, HelpCircle } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import NotificationSettings from './NotificationSettings';
 import DailyTips from './DailyTips';
+import WeeklyGoals from './WeeklyGoals';
+import AdvancedInsights from './AdvancedInsights';
 import { CircularProgress, PillarsRadar } from './CircularProgress';
 import { useNotifications } from '../hooks/useNotifications';
 import './Home.css';
@@ -154,13 +156,25 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onOpenQuickStart }) => {
             color: p.color
           }))}
         />
-      )}
-
-      {/* Conseils quotidiens */}
+      )}      {/* Conseils quotidiens */}
       {todayEntry && (
         <DailyTips 
           pillars={todayEntry.pillars}
           globalScore={todayEntry.globalScore}
+        />
+      )}
+
+      {/* Objectifs hebdomadaires et défis */}
+      {todayEntry && (
+        <WeeklyGoals 
+          pillars={todayEntry.pillars}
+        />
+      )}
+
+      {/* Insights avancés */}
+      {todayEntry && (
+        <AdvancedInsights 
+          pillars={todayEntry.pillars}
         />
       )}
 

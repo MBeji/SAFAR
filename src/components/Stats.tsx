@@ -3,6 +3,7 @@ import type { DailyEntry } from '../types';
 import { DataService } from '../services/DataService';
 import { ArrowLeft, TrendingUp, Calendar, BarChart3 } from 'lucide-react';
 import { ExportButton } from './ExportButton';
+import Achievements from './Achievements';
 import { 
   LineChart, 
   Line, 
@@ -299,12 +300,13 @@ const Stats: React.FC<StatsProps> = ({ onNavigate }) => {
                   />
                 </BarChart>
               </ResponsiveContainer>
-            </div>          </div>
-
-          {/* Message d'aide pour l'export */}
+            </div>          </div>          {/* Message d'aide pour l'export */}
           <div className="export-help">
             <p>💡 <strong>Astuce :</strong> Utilisez le bouton "Exporter PDF" pour générer un rapport complet avec vos scores, tendances et recommandations personnalisées.</p>
           </div>
+
+          {/* Réalisations */}
+          <Achievements />
         </div>
       )}
     </div>

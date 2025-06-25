@@ -28,6 +28,9 @@
 .theme-toggle-advanced-container {
   position: relative;
   display: inline-block;
+  /* Assurer que le menu peut déborder */
+  overflow: visible;
+  z-index: 1000;
 }
 
 /* Bouton principal - Style Apple Health */
@@ -126,7 +129,7 @@
     0 20px 60px rgba(0, 0, 0, 0.15),
     0 8px 24px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  z-index: 1000;
+  z-index: 9999; /* Augmenté pour être au-dessus de tout */
   min-width: 280px;
   max-width: 320px;
   opacity: 0;

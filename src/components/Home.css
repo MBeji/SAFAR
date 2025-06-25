@@ -7,7 +7,7 @@
   color: var(--color-text);
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; - Retiré pour permettre l'affichage du menu déroulant */
 }
 
 /* Effet de particules en arrière-plan */
@@ -72,6 +72,10 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  /* Permettre l'affichage du menu déroulant */
+  overflow: visible;
+  position: relative;
+  z-index: 100;
 }
 
 .notification-button {

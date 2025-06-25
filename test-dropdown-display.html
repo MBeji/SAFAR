@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test ThemeToggle Menu Déroulant</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #F2F2F7;
+            color: #1C1C1E;
+            min-height: 100vh;
+        }
+
+        .test-container {
+            max-width: 480px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #F2F2F7;
+            border-radius: 12px;
+            /* Pas d'overflow hidden */
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+            /* Permettre l'overflow */
+            overflow: visible;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            /* Permettre l'overflow */
+            overflow: visible;
+            position: relative;
+            z-index: 100;
+        }
+
+        /* Simuler le ThemeToggle */
+        .theme-toggle-container {
+            position: relative;
+            display: inline-block;
+            overflow: visible;
+            z-index: 1000;
+        }
+
+        .theme-toggle-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 18px;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #007AFF 0%, #5AC8FA 100%);
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+            min-height: 48px;
+        }
+
+        .theme-toggle-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19);
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: 20px;
+            padding: 16px;
+            box-shadow: 
+                0 20px 60px rgba(0, 0, 0, 0.15),
+                0 8px 24px rgba(0, 0, 0, 0.1);
+            z-index: 9999;
+            min-width: 280px;
+            opacity: 0;
+            transform: translateY(-15px) scale(0.95);
+            transition: all 0.4s ease;
+            pointer-events: none;
+        }
+
+        .dropdown-menu.open {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        .theme-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 8px;
+        }
+
+        .theme-option:hover {
+            background: rgba(0, 0, 0, 0.05);
+            transform: translateX(4px);
+        }
+
+        .theme-preview {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #007AFF, #5AC8FA);
+        }
+
+        .theme-info {
+            flex: 1;
+        }
+
+        .theme-name {
+            font-weight: 600;
+            color: #1C1C1E;
+            margin-bottom: 2px;
+        }
+
+        .theme-desc {
+            font-size: 0.8rem;
+            color: #6B7280;
+        }
+
+        .content {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            margin-top: 20px;
+        }
+
+        .test-info {
+            background: #E8F5E8;
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid #30D158;
+            margin-bottom: 20px;
+        }
+
+        .test-steps {
+            background: #FFF3CD;
+            padding: 16px;
+            border-radius: 8px;
+            border-left: 4px solid #FF9500;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <div class="header">
+            <h1>Test Menu Déroulant</h1>
+            <div class="header-actions">
+                <div class="theme-toggle-container">
+                    <button class="theme-toggle-btn" onclick="toggleDropdown()">
+                        🌙 Thème
+                        <span style="margin-left: 4px;">▼</span>
+                    </button>
+                    <div class="dropdown-menu" id="dropdown">
+                        <div class="theme-option">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #007AFF, #5AC8FA);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Mode Clair</div>
+                                <div class="theme-desc">Design Apple Health</div>
+                            </div>
+                        </div>
+                        <div class="theme-option">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #1C1C1E, #2C2C2E);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Mode Sombre</div>
+                                <div class="theme-desc">Nuit profonde</div>
+                            </div>
+                        </div>
+                        <div class="theme-option">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #FF3B30, #FF6B6B);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Santé</div>
+                                <div class="theme-desc">Rouge Apple Health</div>
+                            </div>
+                        </div>
+                        <div class="theme-option">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #30D158, #32D74B);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Activité</div>
+                                <div class="theme-desc">Vert fitness</div>
+                            </div>
+                        </div>
+                        <div class="theme-option">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #BF5AF2, #DA70D6);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Méditation</div>
+                                <div class="theme-desc">Violet zen</div>
+                            </div>
+                        </div>
+                        <div class="theme-option">
+                            <div class="theme-preview" style="background: linear-gradient(45deg, #FF9500, #FF6B35);"></div>
+                            <div class="theme-info">
+                                <div class="theme-name">Énergie</div>
+                                <div class="theme-desc">Orange vitaminé</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-info">
+            <h3>✅ Test d'Affichage du Menu Déroulant</h3>
+            <p>Ce test valide que le menu déroulant s'affiche correctement sans être coupé par overflow: hidden.</p>
+        </div>
+
+        <div class="test-steps">
+            <h3>🔍 Instructions de Test</h3>
+            <ol>
+                <li><strong>Cliquez sur le bouton "🌙 Thème"</strong> en haut à droite</li>
+                <li><strong>Vérifiez que le menu s'ouvre complètement</strong> sans être coupé</li>
+                <li><strong>Testez le hover</strong> sur les options du menu</li>
+                <li><strong>Cliquez en dehors</strong> pour fermer le menu</li>
+                <li><strong>Redimensionnez la fenêtre</strong> et retestez</li>
+            </ol>
+        </div>
+
+        <div class="content">
+            <h2>Contenu de Test</h2>
+            <p>Ce contenu simule la page d'accueil de l'application Bien-être.</p>
+            <p>Le menu déroulant doit s'afficher au-dessus de tout ce contenu sans être coupé.</p>
+            
+            <div style="height: 200px; background: linear-gradient(135deg, #F0F8FF, #E6F3FF); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 20px 0;">
+                <p>Zone de contenu simulée</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let isOpen = false;
+
+        function toggleDropdown() {
+            const dropdown = document.getElementById('dropdown');
+            const btn = document.querySelector('.theme-toggle-btn');
+            
+            isOpen = !isOpen;
+            
+            if (isOpen) {
+                dropdown.classList.add('open');
+                btn.style.transform = 'translateY(-2px)';
+                btn.querySelector('span').textContent = '▲';
+            } else {
+                dropdown.classList.remove('open');
+                btn.style.transform = '';
+                btn.querySelector('span').textContent = '▼';
+            }
+        }
+
+        // Fermer le menu en cliquant en dehors
+        document.addEventListener('click', function(event) {
+            const container = document.querySelector('.theme-toggle-container');
+            if (!container.contains(event.target) && isOpen) {
+                toggleDropdown();
+            }
+        });
+
+        // Log de test
+        console.log('Test ThemeToggle Menu - Prêt');
+        console.log('Vérifiez que le menu s\'affiche sans être coupé');
+    </script>
+</body>
+</html>

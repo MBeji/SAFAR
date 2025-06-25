@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import type { DailyEntry } from '../types';
 import { DataService } from '../services/DataService';
-import { Calendar, TrendingUp, Edit3, Bell } from 'lucide-react';
+import { Calendar, TrendingUp, Edit3, Bell, HelpCircle } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import NotificationSettings from './NotificationSettings';
 import { CircularProgress, PillarsRadar } from './CircularProgress';
@@ -10,9 +10,10 @@ import './Home.css';
 
 interface HomeProps {
   onNavigate: (page: 'home' | 'journal' | 'stats') => void;
+  onOpenQuickStart?: () => void;
 }
 
-const Home: React.FC<HomeProps> = ({ onNavigate }) => {
+const Home: React.FC<HomeProps> = ({ onNavigate, onOpenQuickStart }) => {
   const [todayEntry, setTodayEntry] = useState<DailyEntry | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showNotificationSettings, setShowNotificationSettings] = useState(false);
@@ -71,8 +72,14 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   }
   return (
     <div className="home-container">      <header className="home-header animate-slide-up">        <div className="header-content">
-          <h1>Mon Bien-être</h1>
-          <div className="header-actions">
+          <h1>Mon Bien-être</h1>          <div className="header-actions">
+            <button 
+              className="notification-button hover-glow"
+              onClick={onOpenQuickStart}
+              title="Guide de démarrage"
+            >
+              <HelpCircle size={18} />
+            </button>
             <button 
               className="notification-button hover-glow"
               onClick={() => setShowNotificationSettings(true)}

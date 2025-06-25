@@ -6,6 +6,7 @@ import './Journal.css';
 
 interface JournalProps {
   onNavigate: (page: 'home' | 'journal' | 'stats') => void;
+  onOpenQuickStart?: () => void;
 }
 
 const Journal: React.FC<JournalProps> = ({ onNavigate }) => {

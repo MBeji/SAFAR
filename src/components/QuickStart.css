@@ -1,0 +1,227 @@
+.quick-start-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out;
+  padding: 20px;
+}
+
+.quick-start-modal {
+  background: var(--color-surface);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 40px;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  animation: slideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-strong);
+}
+
+.quick-start-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  color: var(--color-textSecondary);
+  padding: 8px;
+  border-radius: 12px;
+  transition: var(--transition-smooth);
+}
+
+.quick-start-close:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+  transform: scale(1.1);
+}
+
+.quick-start-content {
+  text-align: center;
+}
+
+.quick-start-step-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 30px;
+}
+
+.step-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-border);
+  transition: var(--transition-smooth);
+}
+
+.step-dot.active {
+  background: var(--gradient-primary);
+  background: var(--color-primary);
+  box-shadow: 0 0 15px rgba(139, 124, 246, 0.4);
+  transform: scale(1.2);
+}
+
+.quick-start-step {
+  margin-bottom: 40px;
+}
+
+.quick-start-icon {
+  margin-bottom: 20px;
+  color: var(--color-primary);
+  filter: drop-shadow(0 0 10px rgba(139, 124, 246, 0.3));
+}
+
+.quick-start-step h2 {
+  margin: 0 0 16px 0;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  background: var(--gradient-primary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.quick-start-step p {
+  margin: 0;
+  color: var(--color-textSecondary);
+  line-height: 1.6;
+  font-size: 1rem;
+}
+
+.quick-start-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.quick-start-navigation {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.quick-start-button {
+  padding: 12px 24px;
+  border-radius: 16px;
+  border: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: var(--transition-bounce);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.quick-start-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.quick-start-button:hover::before {
+  left: 100%;
+}
+
+.quick-start-button.primary {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: var(--shadow-soft);
+}
+
+.quick-start-button.primary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-medium);
+}
+
+.quick-start-button.secondary {
+  background: var(--gradient-success);
+  color: white;
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 8px;
+}
+
+.quick-start-button.secondary:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-medium);
+}
+
+.quick-start-button.outline {
+  background: transparent;
+  color: var(--color-textSecondary);
+  border: 1px solid var(--color-border);
+}
+
+.quick-start-button.outline:hover {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .quick-start-modal {
+    margin: 20px;
+    padding: 30px 24px;
+    max-width: none;
+  }
+  
+  .quick-start-step h2 {
+    font-size: 1.3rem;
+  }
+  
+  .quick-start-navigation {
+    flex-direction: column;
+  }
+  
+  .quick-start-button {
+    width: 100%;
+  }
+}

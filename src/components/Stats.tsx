@@ -23,6 +23,7 @@ import './Stats.css';
 
 interface StatsProps {
   onNavigate: (page: 'home' | 'journal' | 'stats') => void;
+  onOpenQuickStart?: () => void;
 }
 
 const Stats: React.FC<StatsProps> = ({ onNavigate }) => {

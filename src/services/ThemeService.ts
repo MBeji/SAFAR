@@ -21,32 +21,31 @@ const THEME_STORAGE_KEY = 'wellbeing-theme';
 export const LIGHT_THEME: ThemeConfig = {
   theme: 'light',
   colors: {
-    primary: '#667eea',
-    secondary: '#764ba2',
-    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
-    surface: 'rgba(255, 255, 255, 0.1)',
-    text: '#ffffff',
-    textSecondary: 'rgba(255, 255, 255, 0.8)',
-    border: 'rgba(255, 255, 255, 0.2)',
-    success: '#10B981',
-    warning: '#F59E0B',
-    error: '#EF4444'
+    primary: '#007AFF',
+    secondary: '#5AC8FA',
+    background: '#F2F2F7',
+    surface: 'rgba(255, 255, 255, 0.9)',
+    text: '#1C1C1E',
+    textSecondary: 'rgba(28, 28, 30, 0.7)',    border: 'rgba(28, 28, 30, 0.1)',
+    success: '#30D158',
+    warning: '#FF9500',
+    error: '#FF3B30'
   }
 };
 
 export const DARK_THEME: ThemeConfig = {
   theme: 'dark',
   colors: {
-    primary: '#4c1d95',
-    secondary: '#581c87',
-    background: 'linear-gradient(135deg, #1e1b4b 0%, #312e81 100%)',
+    primary: '#0A84FF',
+    secondary: '#64D2FF',
+    background: 'linear-gradient(135deg, #000000 0%, #1C1C1E 50%, #2C2C2E 100%)',
     surface: 'rgba(255, 255, 255, 0.05)',
-    text: '#e5e7eb',
-    textSecondary: 'rgba(229, 231, 235, 0.7)',
+    text: '#F2F2F7',
+    textSecondary: 'rgba(242, 242, 247, 0.7)',
     border: 'rgba(255, 255, 255, 0.1)',
-    success: '#059669',
-    warning: '#d97706',
-    error: '#dc2626'
+    success: '#32D74B',
+    warning: '#FF9F0A',
+    error: '#FF453A'
   }
 };
 
@@ -72,7 +71,6 @@ export class ThemeService {
     }
     return theme === 'dark' ? DARK_THEME : LIGHT_THEME;
   }
-
   static applyTheme(theme: Theme): void {
     const config = this.getThemeConfig(theme);
     const root = document.documentElement;
@@ -81,6 +79,10 @@ export class ThemeService {
     Object.entries(config.colors).forEach(([key, value]) => {
       root.style.setProperty(`--color-${key}`, value);
     });
+
+    // Appliquer aussi le background sur body pour être sûr
+    document.body.style.background = config.colors.background;
+    document.body.style.color = config.colors.text;
 
     // Ajouter une classe pour les styles spécifiques
     root.className = root.className.replace(/theme-\w+/g, '');

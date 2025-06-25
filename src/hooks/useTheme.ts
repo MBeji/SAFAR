@@ -22,7 +22,6 @@ export const useTheme = () => {
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, [currentTheme]);
-
   const toggleTheme = () => {
     const themes: Theme[] = ['light', 'dark', 'auto'];
     const currentIndex = themes.indexOf(currentTheme);
@@ -30,12 +29,13 @@ export const useTheme = () => {
     
     setCurrentTheme(nextTheme);
     ThemeService.setTheme(nextTheme);
+    ThemeService.applyTheme(nextTheme);
     setThemeConfig(ThemeService.getThemeConfig(nextTheme));
   };
-
   const setTheme = (theme: Theme) => {
     setCurrentTheme(theme);
     ThemeService.setTheme(theme);
+    ThemeService.applyTheme(theme);
     setThemeConfig(ThemeService.getThemeConfig(theme));
   };
 

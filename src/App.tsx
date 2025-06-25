@@ -6,6 +6,7 @@ import QuickStart from './components/QuickStart';
 import { ThemeService } from './services/ThemeService';
 import { NotificationService } from './services/NotificationService';
 import { DataService } from './services/DataService';
+import { useTheme } from './hooks/useTheme';
 import './App.css';
 
 type Page = 'home' | 'journal' | 'stats';
@@ -13,6 +14,9 @@ type Page = 'home' | 'journal' | 'stats';
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
   const [showQuickStart, setShowQuickStart] = useState(false);
+  
+  // Le thème est géré automatiquement par le ThemeService
+  useTheme();
 
   useEffect(() => {
     // Initialiser le thème au chargement de l'application

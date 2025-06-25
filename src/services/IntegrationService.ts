@@ -1,4 +1,36 @@
 // Service d'intégration avec APIs externes
+// Interfaces pour les APIs externes
+interface GoogleAPI {
+  auth2: {
+    getAuthInstance(): {
+      isSignedIn: { get(): boolean };
+      signIn(): Promise<void>;
+    };
+  };
+  client: {
+    fitness: any;
+  };
+}
+
+interface CapacitorPlugins {
+  Health: any;
+}
+
+interface CapacitorGlobal {
+  Plugins: CapacitorPlugins;
+}
+
+// Extension des types globaux
+declare global {
+  interface Window {
+    gapi?: GoogleAPI;
+    Capacitor?: CapacitorGlobal;
+  }
+}
+
+// Variables d'environnement pour Vite - utilisées dans les méthodes météo
+const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY || '';
+
 export class IntegrationService {
   
   // Intégration Google Fit (exemple)
@@ -11,7 +43,7 @@ export class IntegrationService {
       }
 
       // Authentification Google
-      const auth = await window.gapi.auth2.getAuthInstance();
+      const auth = window.gapi.auth2.getAuthInstance();
       if (!auth.isSignedIn.get()) {
         await auth.signIn();
       }
@@ -122,17 +154,18 @@ export class IntegrationService {
 
     return score;
   }
-
   // Intégration météo pour conseils adaptatifs
   static async getWeatherBasedTips(): Promise<string[]> {
     try {
       // API météo simple (exemple avec OpenWeatherMap)
-      const API_KEY = process.env.REACT_APP_WEATHER_API_KEY;
-      if (!API_KEY) return [];
+      if (!WEATHER_API_KEY) {
+        console.warn('Clé API météo non configurée');
+        return [];
+      }
 
       const position = await this.getCurrentPosition();
       const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lat=${position.latitude}&lon=${position.longitude}&appid=${API_KEY}&units=metric&lang=fr`
+        `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${WEATHER_API_KEY}&units=metric&lang=fr`
       );
       
       const weather = await response.json();

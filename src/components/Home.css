@@ -253,7 +253,7 @@
 .pillar-name {
   font-size: 0.9rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--color-text);
 }
 
 .pillar-score {

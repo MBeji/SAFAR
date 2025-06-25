@@ -74,30 +74,59 @@ export class ThemeService {
     const config = this.getThemeConfig(theme);
     const root = document.documentElement;
 
+    // Nettoyer les anciennes classes de thème
+    root.className = root.className.replace(/theme-\w+/g, '');
+    document.body.className = document.body.className.replace(/theme-\w+/g, '');
+
+    // Ajouter la nouvelle classe de thème
+    root.classList.add(`theme-${config.theme}`);
+    document.body.classList.add(`theme-${config.theme}`);
+
     // Appliquer les variables CSS
     Object.entries(config.colors).forEach(([key, value]) => {
       root.style.setProperty(`--color-${key}`, value);
     });
 
-    // Appliquer directement sur body pour être sûr
-    document.body.style.background = config.colors.background;
-    document.body.style.color = config.colors.text;
-
-    // Forcer le style sur les conteneurs principaux
-    const containers = document.querySelectorAll('.home-container, .App, #root');
-    containers.forEach(container => {
-      const element = container as HTMLElement;
-      element.style.background = config.colors.background;
-      element.style.color = config.colors.text;
-    });
-
-    // Ajouter une classe pour les styles spécifiques
-    root.className = root.className.replace(/theme-\w+/g, '');
-    root.classList.add(`theme-${config.theme}`);
+    // Force ABSOLUE du style avec !important via CSS inline
+    const style = document.createElement('style');
+    style.id = 'theme-override-style';
     
-    // Aussi appliquer la classe sur body
-    document.body.className = document.body.className.replace(/theme-\w+/g, '');
-    document.body.classList.add(`theme-${config.theme}`);
+    // Supprimer l'ancien style s'il existe
+    const oldStyle = document.getElementById('theme-override-style');
+    if (oldStyle) {
+      oldStyle.remove();
+    }
+
+    // Créer les règles CSS avec !important
+    const isLight = config.theme === 'light';
+    const textColor = isLight ? '#1C1C1E' : '#F2F2F7';
+    const backgroundColor = isLight ? '#F2F2F7' : '#1C1C1E';
+
+    style.textContent = `
+      /* THEME OVERRIDE - FORCE ABSOLUE */
+      html.theme-${config.theme},
+      body.theme-${config.theme},
+      #root.theme-${config.theme},
+      .theme-${config.theme},
+      .theme-${config.theme} *:not(.theme-toggle-advanced):not(.theme-toggle-advanced *) {
+        color: ${textColor} !important;
+        background: ${backgroundColor} !important;
+      }
+      
+      /* Exceptions pour éléments avec couleurs spécifiques */
+      .theme-${config.theme} .pillar-card,
+      .theme-${config.theme} .score-circle,
+      .theme-${config.theme} button:not(.theme-toggle-advanced button) {
+        background: var(--color-surface) !important;
+      }
+      
+      .theme-${config.theme} .home-container {
+        background: ${backgroundColor} !important;
+        color: ${textColor} !important;
+      }
+    `;
+
+    document.head.appendChild(style);
   }
 
   static initTheme(): void {

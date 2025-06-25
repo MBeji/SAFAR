@@ -81,8 +81,34 @@ const ThemeToggleAdvanced: React.FC = () => {
       description: 'Bien-être et relaxation',
       gradient: 'linear-gradient(135deg, #BF5AF2 0%, #DA70D6 50%, #E6B3FA 100%)',
       category: 'contextual'
-    }
-  ];
+    }  ];
+  // Gestionnaire de changement de thème avec historique
+  const handleThemeChange = useCallback((theme: Theme | 'focus' | 'workout' | 'relax') => {
+    if (theme === currentTheme) return;
+    
+    setIsAnimating(true);
+    
+    // Ajouter à l'historique
+    setRecentThemes(prev => {
+      const newHistory = [{ theme, timestamp: new Date() }, ...prev.slice(0, 4)];
+      localStorage.setItem('theme-history', JSON.stringify(newHistory));
+      return newHistory;
+    });
+    
+    // Appliquer le thème (pour les thèmes contextuels, on utilise 'auto' comme fallback)
+    const actualTheme = ['light', 'dark', 'auto'].includes(theme as string) ? theme as Theme : 'auto';
+    setTheme(actualTheme);
+    setIsDropdownOpen(false);
+    
+    setTimeout(() => setIsAnimating(false), 300);
+  }, [currentTheme, setTheme]);
+  // Thème aléatoire
+  const handleRandomTheme = useCallback(() => {
+    const availableThemes = themeOptions.filter(option => option.id !== lastRandomRef.current);
+    const randomTheme = availableThemes[Math.floor(Math.random() * availableThemes.length)];
+    lastRandomRef.current = randomTheme.id as string;
+    handleThemeChange(randomTheme.id);
+  }, [handleThemeChange]);
 
   // Raccourcis clavier
   const handleKeyboardShortcuts = useCallback((event: KeyboardEvent) => {
@@ -105,7 +131,9 @@ const ThemeToggleAdvanced: React.FC = () => {
           handleRandomTheme();
           break;
       }
-    }    // Konami Code detection
+    }
+
+    // Konami Code detection
     const newSequence = [...konamiSequence, event.code].slice(-KONAMI_CODE.length);
     
     if (newSequence.length === KONAMI_CODE.length && 
@@ -116,36 +144,7 @@ const ThemeToggleAdvanced: React.FC = () => {
     } else {
       setKonamiSequence(newSequence);
     }
-  }, []);
-
-  // Gestionnaire de changement de thème avec historique
-  const handleThemeChange = (theme: Theme | 'focus' | 'workout' | 'relax') => {
-    if (theme === currentTheme) return;
-    
-    setIsAnimating(true);
-    
-    // Ajouter à l'historique
-    setRecentThemes(prev => {
-      const newHistory = [{ theme, timestamp: new Date() }, ...prev.slice(0, 4)];
-      localStorage.setItem('theme-history', JSON.stringify(newHistory));
-      return newHistory;
-    });
-    
-    // Appliquer le thème (pour les thèmes contextuels, on utilise 'auto' comme fallback)
-    const actualTheme = ['light', 'dark', 'auto'].includes(theme as string) ? theme as Theme : 'auto';
-    setTheme(actualTheme);
-    setIsDropdownOpen(false);
-    
-    setTimeout(() => setIsAnimating(false), 300);
-  };
-
-  // Thème aléatoire
-  const handleRandomTheme = () => {
-    const availableThemes = themeOptions.filter(option => option.id !== lastRandomRef.current);
-    const randomTheme = availableThemes[Math.floor(Math.random() * availableThemes.length)];
-    lastRandomRef.current = randomTheme.id as string;
-    handleThemeChange(randomTheme.id);
-  };
+  }, [konamiSequence, handleThemeChange, handleRandomTheme]);
 
   // Favoris
   const toggleFavorite = (themeId: string) => {

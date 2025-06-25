@@ -8,7 +8,7 @@ import { useNotifications } from '../hooks/useNotifications';
 import './Home.css';
 
 interface HomeProps {
-  onNavigate: (page: 'home' | 'journal' | 'stats' | 'test') => void;
+  onNavigate: (page: 'home' | 'journal' | 'stats') => void;
 }
 
 const Home: React.FC<HomeProps> = ({ onNavigate }) => {
@@ -159,13 +159,6 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           onClick={() => onNavigate('stats')}
         >
           <TrendingUp size={20} />          Statistiques
-        </button>
-        <button 
-          className="action-button secondary"
-          onClick={() => onNavigate('test')}
-          style={{ backgroundColor: '#FF5722' }}
-        >
-          🧪 Test Export
         </button>
       </div>
 

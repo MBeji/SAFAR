@@ -5,7 +5,7 @@ import { ArrowLeft, Save, Check } from 'lucide-react';
 import './Journal.css';
 
 interface JournalProps {
-  onNavigate: (page: 'home' | 'journal' | 'stats' | 'test') => void;
+  onNavigate: (page: 'home' | 'journal' | 'stats') => void;
 }
 
 const Journal: React.FC<JournalProps> = ({ onNavigate }) => {

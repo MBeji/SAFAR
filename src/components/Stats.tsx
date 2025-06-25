@@ -22,7 +22,7 @@ import {
 import './Stats.css';
 
 interface StatsProps {
-  onNavigate: (page: 'home' | 'journal' | 'stats' | 'test') => void;
+  onNavigate: (page: 'home' | 'journal' | 'stats') => void;
 }
 
 const Stats: React.FC<StatsProps> = ({ onNavigate }) => {
@@ -140,13 +140,20 @@ const Stats: React.FC<StatsProps> = ({ onNavigate }) => {
             </button>
           </div>
         </div>
-      </header>
-
-      {data.length === 0 ? (
+      </header>      {data.length === 0 ? (
         <div className="no-data">
           <BarChart3 size={64} color="#9CA3AF" />
           <h3>Aucune donnée disponible</h3>
           <p>Commencez à remplir votre journal quotidien pour voir vos statistiques.</p>
+          <button 
+            className="demo-button"
+            onClick={() => {
+              DataService.createTestData();
+              loadData();
+            }}
+          >
+            📊 Créer des données de démonstration
+          </button>
         </div>
       ) : (
         <div className="stats-content">
@@ -280,7 +287,11 @@ const Stats: React.FC<StatsProps> = ({ onNavigate }) => {
                   />
                 </BarChart>
               </ResponsiveContainer>
-            </div>
+            </div>          </div>
+
+          {/* Message d'aide pour l'export */}
+          <div className="export-help">
+            <p>💡 <strong>Astuce :</strong> Utilisez le bouton "Exporter PDF" pour générer un rapport complet avec vos scores, tendances et recommandations personnalisées.</p>
           </div>
         </div>
       )}

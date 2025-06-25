@@ -141,10 +141,9 @@ const Stats: React.FC<StatsProps> = ({ onNavigate }) => {
               30J
             </button>
           </div>
-        </div>
-      </header>      {data.length === 0 ? (
+        </div>      </header>      {data.length === 0 ? (
         <div className="no-data">
-          <BarChart3 size={64} color="#9CA3AF" />
+          <BarChart3 size={64} color="#8E8E93" />
           <h3>Aucune donnée disponible</h3>
           <p>Commencez à remplir votre journal quotidien pour voir vos statistiques.</p>
           <button 
@@ -192,47 +191,47 @@ const Stats: React.FC<StatsProps> = ({ onNavigate }) => {
 
           {/* Graphique de tendance */}
           <div className="chart-section">
-            <h3>Évolution du Score Global</h3>
-            <div className="chart-container">
+            <h3>Évolution du Score Global</h3>            <div className="chart-container">
               <ResponsiveContainer width="100%" height={200}>
                 <LineChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#ffffff20" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
                   <XAxis 
                     dataKey="date" 
-                    tick={{ fill: 'white', fontSize: 12 }}
-                    axisLine={{ stroke: '#ffffff40' }}
+                    tick={{ fill: 'var(--color-textSecondary)', fontSize: 12 }}
+                    axisLine={{ stroke: 'var(--color-border)' }}
                   />
                   <YAxis 
                     domain={[0, 100]}
-                    tick={{ fill: 'white', fontSize: 12 }}
-                    axisLine={{ stroke: '#ffffff40' }}
+                    tick={{ fill: 'var(--color-textSecondary)', fontSize: 12 }}
+                    axisLine={{ stroke: 'var(--color-border)' }}
                   />
                   <Tooltip 
                     contentStyle={{ 
-                      backgroundColor: 'rgba(0,0,0,0.8)', 
-                      border: 'none',
+                      backgroundColor: 'var(--color-surface)', 
+                      border: '1px solid var(--color-border)',
                       borderRadius: '8px',
-                      color: 'white'
+                      color: 'var(--color-text)',
+                      boxShadow: 'var(--shadow-medium)'
                     }}
                   />                  <Line 
                     type="monotone" 
                     dataKey="score" 
-                    stroke="#10B981" 
+                    stroke="#34C759" 
                     strokeWidth={4}
                     dot={{ 
-                      fill: '#10B981', 
+                      fill: '#34C759', 
                       strokeWidth: 2, 
                       r: 6,
-                      filter: 'drop-shadow(0 2px 4px rgba(16, 185, 129, 0.4))'
+                      filter: 'drop-shadow(0 2px 4px rgba(52, 199, 89, 0.4))'
                     }}
                     activeDot={{ 
                       r: 8, 
-                      fill: '#10B981',
+                      fill: '#34C759',
                       stroke: '#fff',
                       strokeWidth: 3,
-                      filter: 'drop-shadow(0 2px 8px rgba(16, 185, 129, 0.6))'
+                      filter: 'drop-shadow(0 2px 8px rgba(52, 199, 89, 0.6))'
                     }}
-                    filter="drop-shadow(0 2px 4px rgba(16, 185, 129, 0.3))"
+                    filter="drop-shadow(0 2px 4px rgba(52, 199, 89, 0.3))"
                   />
                 </LineChart>
               </ResponsiveContainer>
@@ -242,24 +241,23 @@ const Stats: React.FC<StatsProps> = ({ onNavigate }) => {
           {/* Radar des piliers */}
           <div className="chart-section">
             <h3>Répartition par Pilier</h3>
-            <div className="chart-container">
-              <ResponsiveContainer width="100%" height={250}>
+            <div className="chart-container">              <ResponsiveContainer width="100%" height={250}>
                 <RadarChart data={radarData}>
-                  <PolarGrid stroke="#ffffff40" />
+                  <PolarGrid stroke="var(--color-border)" />
                   <PolarAngleAxis 
                     dataKey="pillar" 
-                    tick={{ fill: 'white', fontSize: 10 }}
+                    tick={{ fill: 'var(--color-textSecondary)', fontSize: 10 }}
                   />
                   <PolarRadiusAxis 
                     angle={0}
                     domain={[0, 100]}
-                    tick={{ fill: 'white', fontSize: 10 }}
+                    tick={{ fill: 'var(--color-textSecondary)', fontSize: 10 }}
                   />
                   <Radar 
                     name="Score" 
                     dataKey="score" 
-                    stroke="#3B82F6" 
-                    fill="#3B82F6" 
+                    stroke="#007AFF" 
+                    fill="#007AFF" 
                     fillOpacity={0.3}
                     strokeWidth={2}
                   />
@@ -273,29 +271,29 @@ const Stats: React.FC<StatsProps> = ({ onNavigate }) => {
             <h3>Moyenne par Pilier ({viewMode === 'week' ? '7 jours' : '30 jours'})</h3>
             <div className="chart-container">
               <ResponsiveContainer width="100%" height={200}>
-                <BarChart data={radarData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#ffffff20" />
+                <BarChart data={radarData}>                  <CartesianGrid strokeDasharray="3 3" stroke="var(--color-border)" />
                   <XAxis 
                     dataKey="pillar" 
-                    tick={{ fill: 'white', fontSize: 10 }}
-                    axisLine={{ stroke: '#ffffff40' }}
+                    tick={{ fill: 'var(--color-textSecondary)', fontSize: 10 }}
+                    axisLine={{ stroke: 'var(--color-border)' }}
                   />
                   <YAxis 
                     domain={[0, 100]}
-                    tick={{ fill: 'white', fontSize: 12 }}
-                    axisLine={{ stroke: '#ffffff40' }}
+                    tick={{ fill: 'var(--color-textSecondary)', fontSize: 12 }}
+                    axisLine={{ stroke: 'var(--color-border)' }}
                   />
                   <Tooltip 
                     contentStyle={{ 
-                      backgroundColor: 'rgba(0,0,0,0.8)', 
-                      border: 'none',
+                      backgroundColor: 'var(--color-surface)', 
+                      border: '1px solid var(--color-border)',
                       borderRadius: '8px',
-                      color: 'white'
+                      color: 'var(--color-text)',
+                      boxShadow: 'var(--shadow-medium)'
                     }}
                   />
                   <Bar 
                     dataKey="score" 
-                    fill="#8B5CF6"
+                    fill="#5856D6"
                     radius={[4, 4, 0, 0]}
                   />
                 </BarChart>

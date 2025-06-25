@@ -33,13 +33,13 @@
   z-index: 1000;
 }
 
-/* Bouton principal - Style Apple Health */
+/* Bouton principal - Style Apple Health avec contours */
 .theme-toggle-advanced {
   display: flex;
   align-items: center;
   gap: 8px;
   padding: 12px 18px;
-  border: none;
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Contour visible */
   border-radius: 20px;
   color: white;
   font-size: 0.9rem;
@@ -48,16 +48,21 @@
   position: relative;
   overflow: hidden;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: var(--shadow-medium);
+  box-shadow: 
+    var(--shadow-medium),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   min-height: 48px;
   outline: none;
-  border: 2px solid transparent;
+  background: linear-gradient(135deg, rgba(0, 122, 255, 0.9), rgba(90, 200, 250, 0.9));
 }
 
 .theme-toggle-advanced:hover {
   transform: translateY(-3px) scale(1.03);
-  box-shadow: var(--shadow-elevated);
+  box-shadow: 
+    var(--shadow-elevated),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.5); /* Contour plus visible au hover */
 }
 
 .theme-toggle-advanced:active {
@@ -66,7 +71,10 @@
 
 .theme-toggle-advanced.dropdown-open {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-floating);
+  box-shadow: 
+    var(--shadow-floating),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  border-color: rgba(255, 255, 255, 0.6); /* Contour accentué quand ouvert */
 }
 
 /* Icône avec animation améliorée */
@@ -115,7 +123,7 @@
   left: 100%;
 }
 
-/* Menu déroulant avancé */
+/* Menu déroulant avancé - Responsive */
 .theme-dropdown-advanced {
   position: absolute;
   top: calc(100% + 12px);
@@ -129,13 +137,15 @@
     0 20px 60px rgba(0, 0, 0, 0.15),
     0 8px 24px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  z-index: 9999; /* Augmenté pour être au-dessus de tout */
+  z-index: 9999;
   min-width: 280px;
   max-width: 320px;
   opacity: 0;
   transform: translateY(-15px) scale(0.95);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 .theme-dropdown-advanced.open {
@@ -443,6 +453,115 @@
 
   .favorites-grid {
     grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* =================================
+   RESPONSIVE DESIGN
+   ================================= */
+
+/* Mobile - Petit écran */
+@media (max-width: 480px) {
+  .theme-dropdown-advanced {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%) scale(0.95);
+    min-width: calc(100vw - 40px);
+    max-width: calc(100vw - 40px);
+    max-height: 85vh;
+    border-radius: 16px;
+  }
+  
+  .theme-dropdown-advanced.open {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .theme-toggle-advanced {
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    min-height: 40px;
+  }
+  
+  .themes-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  
+  .theme-option {
+    padding: 12px;
+  }
+  
+  .section-title {
+    font-size: 0.7rem;
+  }
+}
+
+/* Tablet - Écran moyen */
+@media (max-width: 768px) and (min-width: 481px) {
+  .theme-dropdown-advanced {
+    min-width: 300px;
+    max-width: calc(100vw - 60px);
+  }
+  
+  .themes-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+/* Desktop - Écran large */
+@media (min-width: 769px) {
+  .theme-dropdown-advanced {
+    min-width: 320px;
+    max-width: 400px;
+  }
+  
+  .themes-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  
+  .theme-toggle-advanced:hover {
+    transform: translateY(-4px) scale(1.05);
+  }
+}
+
+/* Très grand écran */
+@media (min-width: 1200px) {
+  .theme-dropdown-advanced {
+    min-width: 350px;
+    max-width: 450px;
+  }
+}
+
+/* Mode paysage mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+  .theme-dropdown-advanced {
+    max-height: 70vh;
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%) scale(0.95);
+  }
+  
+  .theme-dropdown-advanced.open {
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+/* Préférences accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle-advanced,
+  .theme-dropdown-advanced,
+  .theme-option {
+    transition: none;
+    animation: none;
+  }
+  
+  .theme-toggle-advanced:hover {
+    transform: none;
   }
 }
 

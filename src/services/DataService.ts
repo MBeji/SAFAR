@@ -111,14 +111,13 @@ export class DataService {
     // Créer 7 jours de données de test
     for (let i = 0; i < 7; i++) {
       const date = new Date(today);
-      date.setDate(date.getDate() - i);
-        const pillars = [
-        { id: 'nutrition', name: 'Alimentation', icon: '🥗', color: '#6EE7B7', score: Math.round(60 + Math.random() * 40), questions: [] },
-        { id: 'sport', name: 'Sport', icon: '🏃', color: '#93C5FD', score: Math.round(50 + Math.random() * 50), questions: [] },
-        { id: 'sleep', name: 'Sommeil', icon: '😴', color: '#C4B5FD', score: Math.round(65 + Math.random() * 35), questions: [] },
-        { id: 'stress', name: 'Stress/Équilibre', icon: '🧘', color: '#A7F3D0', score: Math.round(45 + Math.random() * 55), questions: [] },
-        { id: 'spirituality', name: 'Spiritualité', icon: '✨', color: '#DDD6FE', score: Math.round(40 + Math.random() * 60), questions: [] },
-        { id: 'social', name: 'Social', icon: '👥', color: '#FECACA', score: Math.round(60 + Math.random() * 40), questions: [] }
+      date.setDate(date.getDate() - i);        const pillars = [
+        { id: 'nutrition', name: 'Alimentation', icon: '🥗', color: '#34C759', score: Math.round(60 + Math.random() * 40), questions: [] },
+        { id: 'sport', name: 'Sport', icon: '🏃', color: '#FF9500', score: Math.round(50 + Math.random() * 50), questions: [] },
+        { id: 'sleep', name: 'Sommeil', icon: '😴', color: '#5856D6', score: Math.round(65 + Math.random() * 35), questions: [] },
+        { id: 'stress', name: 'Stress/Équilibre', icon: '🧘', color: '#00C7BE', score: Math.round(45 + Math.random() * 55), questions: [] },
+        { id: 'spirituality', name: 'Spiritualité', icon: '✨', color: '#5AC8FA', score: Math.round(40 + Math.random() * 60), questions: [] },
+        { id: 'social', name: 'Social', icon: '👥', color: '#FF2D92', score: Math.round(60 + Math.random() * 40), questions: [] }
       ];
       
       const globalScore = Math.round(pillars.reduce((sum, p) => sum + p.score, 0) / pillars.length);

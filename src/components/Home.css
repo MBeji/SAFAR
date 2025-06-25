@@ -1,5 +1,5 @@
 .home-container {
-  max-width: 480px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   background: var(--color-background);
@@ -10,7 +10,7 @@
   /* overflow: hidden; - Retiré pour permettre l'affichage du menu déroulant */
 }
 
-/* Effet de particules en arrière-plan */
+/* Effet de particules en arrière-plan - Apple Health Style */
 .home-container::before {
   content: '';
   position: absolute;
@@ -19,9 +19,9 @@
   right: 0;
   bottom: 0;
   background: 
-    radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    radial-gradient(circle at 20% 80%, rgba(0, 122, 255, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(52, 199, 89, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(255, 149, 0, 0.02) 0%, transparent 50%);
   pointer-events: none;
   animation: float 8s ease-in-out infinite;
   z-index: 0;
@@ -131,6 +131,8 @@
   transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  grid-column: 1 / -1; /* Full width on all screen sizes */
 }
 
 /* Effet de brillance animé */
@@ -141,7 +143,7 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+  background: linear-gradient(45deg, transparent, rgba(0, 122, 255, 0.05), transparent);
   transform: rotate(45deg);
   animation: shimmer 3s infinite;
   pointer-events: none;
@@ -150,6 +152,7 @@
 .global-score-card:hover {
   transform: translateY(-5px);
   box-shadow: var(--shadow-strong);
+  border-color: var(--color-primary);
 }
 
 .score-circle {
@@ -160,13 +163,13 @@
   position: relative;
 }
 
-/* Cercle de progression animé */
+/* Cercle de progression animé - Apple Health Style */
 .score-circle::before {
   content: '';
   position: absolute;
   width: 120px;
   height: 120px;
-  border: 3px solid rgba(255, 255, 255, 0.2);
+  border: 3px solid var(--color-border);
   border-radius: 50%;
   top: 50%;
   left: 50%;
@@ -201,20 +204,21 @@
 
 .pillars-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
   margin-bottom: 30px;
 }
 
 .pillar-card {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-surface);
   backdrop-filter: blur(10px);
   border-radius: 15px;
   padding: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--color-border);
   transition: var(--transition-bounce);
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-soft);
 }
 
 /* Effet de lueur au survol */
@@ -225,7 +229,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 122, 255, 0.1), transparent);
   transition: left 0.5s;
 }
 
@@ -236,7 +240,7 @@
 .pillar-card:hover {
   transform: translateY(-5px) scale(1.02);
   box-shadow: var(--shadow-medium);
-  border-color: rgba(255, 255, 255, 0.4);
+  border-color: var(--color-primary);
 }
 
 .pillar-header {
@@ -276,7 +280,7 @@
   height: 8px;
   border-radius: 10px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--color-border);
   position: relative;
   margin-top: 8px;
 }
@@ -316,7 +320,20 @@
 .action-buttons {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 16px;
+}
+
+/* Action Buttons Responsive */
+@media (min-width: 769px) {
+  .action-buttons {
+    flex-direction: row;
+    justify-content: center;
+    gap: 16px;
+  }
+  
+  .action-button {
+    min-width: 200px;
+  }
 }
 
 .action-button {
@@ -336,39 +353,215 @@
 .action-button.primary {
   background: var(--gradient-success);
   color: white;
+  border: 1px solid var(--color-success);
 }
 
 .action-button.primary:hover {
-  background: linear-gradient(45deg, #32D74B, #30D158);
+  background: var(--color-success);
   transform: translateY(-1px);
+  box-shadow: var(--shadow-medium);
 }
 
 .action-button.secondary {
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
 }
 
 .action-button.secondary:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--color-surface-hover);
   transform: translateY(-1px);
+  box-shadow: var(--shadow-soft);
 }
 
-/* Responsive pour plus petits écrans */
-@media (max-width: 480px) {
+/* Apple Health Content Layout */
+.home-content {
+  display: grid;
+  gap: 24px;
+  width: 100%;
+}
+
+/* Large Desktop: Optimize spacing */
+@media (min-width: 1200px) {
   .home-container {
-    padding: 15px;
+    padding: 24px;
+  }
+  
+  .pillars-grid {
+    gap: 20px;
+  }
+  
+  .home-content {
+    gap: 32px;
+  }
+}
+
+/* Extra Large Screens: Prevent over-stretching */
+@media (min-width: 1400px) {
+  .home-container {
+    max-width: 1200px;
+  }
+  
+  .pillars-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
+}
+
+/* Print Styles */
+@media print {
+  .home-container {
+    max-width: none;
+    padding: 0;
+    background: white;
+    color: black;
+  }
+  
+  .pillars-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  
+  .action-buttons {
+    display: none;
+  }
+}
+
+/* Mobile: Single column layout */
+@media (max-width: 768px) {
+  .home-container {
+    padding: 16px;
+    max-width: 100%;
   }
   
   .pillars-grid {
     grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .action-buttons {
+    gap: 12px;
   }
   
   .home-header h1 {
     font-size: 2rem;
+    text-align: center;
+  }
+  
+  .header-content {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .header-actions {
+    justify-content: center;
+    order: -1;
   }
   
   .score-number {
     font-size: 3rem;
+  }
+  
+  .global-score-card {
+    padding: 20px;
+  }
+  
+  .pillar-card {
+    padding: 15px;
+  }
+  
+  .pillar-icon {
+    font-size: 1.2rem;
+  }
+  
+  .pillar-percentage {
+    font-size: 1.5rem;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .home-container {
+    padding: 16px;
+  }
+  
+  .pillars-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  
+  .home-header h1 {
+    font-size: 1.8rem;
+  }
+  
+  .score-number {
+    font-size: 2.8rem;
+  }
+}
+
+/* Tablet: Two column layout */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .home-container {
+    max-width: 800px;
+    padding: 20px;
+  }
+  
+  .pillars-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  
+  .home-header h1 {
+    font-size: 2.3rem;
+  }
+  
+  .score-number {
+    font-size: 3.2rem;
+  }
+}
+
+/* Desktop: Full grid layout */
+@media (min-width: 1025px) {
+  .home-container {
+    max-width: 1200px;
+    padding: 20px;
+  }
+  
+  .pillars-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 16px;
+  }
+  
+  .pillar-card:hover {
+    transform: translateY(-8px) scale(1.03);
+  }
+  
+  .global-score-card:hover {
+    transform: translateY(-8px);
+  }
+}
+
+/* Landscape Mobile: Optimized for horizontal viewing */
+@media (max-height: 600px) and (orientation: landscape) and (max-width: 768px) {
+  .home-container {
+    padding: 16px;
+  }
+  
+  .global-score-card {
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .score-number {
+    font-size: 2.5rem;
+  }
+  
+  .pillars-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 12px;
+  }
+  
+  .pillar-card {
+    padding: 12px;
   }
 }

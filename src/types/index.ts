@@ -40,7 +40,7 @@ export type PillarType = 'alimentation' | 'sport' | 'sommeil' | 'stress' | 'spir
 export const PILLAR_CONFIG: Record<PillarType, { name: string; icon: string; color: string; questions: string[] }> = {  alimentation: {
     name: 'Alimentation',
     icon: '🥗',
-    color: '#6EE7B7', /* Vert menthe pastel */
+    color: '#34C759', /* Vert santé Apple */
     questions: [
       'Ai-je évité le sucre, le pain blanc et les aliments transformés ?',
       'Ai-je consommé suffisamment de légumes, fruits et de l\'eau ?',
@@ -49,21 +49,21 @@ export const PILLAR_CONFIG: Record<PillarType, { name: string; icon: string; col
   },  sport: {
     name: 'Sport',
     icon: '💪',
-    color: '#93C5FD', /* Bleu ciel pastel */
+    color: '#FF9500', /* Orange fitness Apple */
     questions: [
       'Ai-je fait une séance de sport aujourd\'hui ?'
     ]
   },  sommeil: {
     name: 'Sommeil',
     icon: '😴',
-    color: '#C4B5FD', /* Violet lavande pastel */
+    color: '#5856D6', /* Violet sommeil Apple */
     questions: [
       'Ai-je bien dormi (quantité et qualité) ?'
     ]
   },  stress: {
     name: 'Stress / Équilibre',
     icon: '🧘',
-    color: '#A7F3D0', /* Vert aqua pastel */
+    color: '#00C7BE', /* Mint anti-stress Apple */
     questions: [
       'Ai-je bien géré mon temps d\'écran ?',
       'Ai-je protégé mes 5 sens (langue, yeux, pensées, etc.) ?'
@@ -71,7 +71,7 @@ export const PILLAR_CONFIG: Record<PillarType, { name: string; icon: string; col
   },  spiritualite: {
     name: 'Spiritualité',
     icon: '🕌',
-    color: '#DDD6FE', /* Violet très doux */
+    color: '#5AC8FA', /* Cyan spiritualité Apple */
     questions: [
       'Ai-je accompli mes 5 prières à l\'heure, dont 3 en groupe ?',
       'Ai-je respecté mon programme de Coran (lecture, mémorisation) ?',
@@ -81,7 +81,7 @@ export const PILLAR_CONFIG: Record<PillarType, { name: string; icon: string; col
   social: {
     name: 'Social',
     icon: '❤️',
-    color: '#FECACA', /* Rose saumon pastel */
+    color: '#FF2D92', /* Rose social Apple */
     questions: [
       'Ai-je été utile à ma famille ou mon entourage ?',
       'Ai-je aidé quelqu\'un aujourd\'hui (même petit geste) ?',

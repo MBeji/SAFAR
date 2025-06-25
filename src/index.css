@@ -1,36 +1,38 @@
 :root {
-  /* Variables de thème par défaut (clair) - Palette Apple Health */
-  --color-primary: #007AFF; /* Bleu Apple */
+  /* Variables de thème Apple Health - Nouvelle palette officielle */
+  --color-primary: #007AFF; /* Système Bleu Apple */
   --color-secondary: #5AC8FA; /* Cyan Apple */
-  --color-background: #F2F2F7;
-  --color-surface: rgba(255, 255, 255, 0.9);
-  --color-text: #1C1C1E;
-  --color-textSecondary: rgba(28, 28, 30, 0.7);
-  --color-border: rgba(28, 28, 30, 0.1);
-  --color-success: #30D158; /* Vert Apple Health */
-  --color-warning: #FF9500; /* Orange Apple */
-  --color-error: #FF3B30; /* Rouge Apple Health */
+  --color-background: #F2F2F7; /* Gris clair Apple Health */
+  --color-surface: #FFFFFF; /* Blanc pur pour cartes */
+  --color-text: #000000; /* Noir pour texte principal */
+  --color-textSecondary: #8E8E93; /* Gris pour texte secondaire */
+  --color-border: rgba(142, 142, 147, 0.2); /* Bordures subtiles */
   
-  /* Couleurs pastel pour les piliers - Palette Apple Health */
-  --pillar-nutrition: #30D158; /* Vert Apple Health - Nutrition */
-  --pillar-sport: #FF9500; /* Orange Apple - Sport/Fitness */
-  --pillar-sleep: #BF5AF2; /* Violet Apple - Sommeil */
-  --pillar-stress: #00C7BE; /* Mint Apple - Anti-stress */
-  --pillar-spirituality: #5AC8FA; /* Cyan Apple - Spiritualité */
-  --pillar-social: #FF2D92; /* Rose Apple - Social */
+  /* Couleurs spécifiques Apple Health */
+  --color-success: #34C759; /* Vert santé Apple */
+  --color-warning: #FF9500; /* Orange avertissement */
+  --color-error: #FF3B30; /* Rouge alerte Apple */
+  --color-info: #007AFF; /* Bleu information */
   
-  /* Variables pour animations et effets visuels - couleurs Apple Health */
+  /* Couleurs pastel pour les piliers - Apple Health style */
+  --pillar-nutrition: #34C759; /* Vert nutrition */
+  --pillar-sport: #FF9500; /* Orange sport/fitness */
+  --pillar-sleep: #5856D6; /* Violet sommeil */
+  --pillar-stress: #00C7BE; /* Mint anti-stress */
+  --pillar-spirituality: #5AC8FA; /* Cyan spiritualité */
+  --pillar-social: #FF2D92; /* Rose social */
+  
+  /* Variables pour animations et effets visuels */
   --gradient-primary: linear-gradient(135deg, #007AFF 0%, #5AC8FA 100%);
-  --gradient-success: linear-gradient(135deg, #30D158 0%, #32D74B 100%);
+  --gradient-success: linear-gradient(135deg, #34C759 0%, #32D74B 100%);
   --gradient-warning: linear-gradient(135deg, #FF9500 0%, #FF6B35 100%);
-  --gradient-purple: linear-gradient(135deg, #BF5AF2 0%, #DA70D6 100%);
-  --gradient-blue: linear-gradient(135deg, #007AFF 0%, #5AC8FA 100%);
-  --gradient-soft: linear-gradient(135deg, #F2F2F7 0%, #E5E5EA 100%);
+  --gradient-error: linear-gradient(135deg, #FF3B30 0%, #FF6B6B 100%);
+  --gradient-surface: linear-gradient(135deg, #FFFFFF 0%, #F8F9FA 100%);
   
   /* Ombres Apple Style */
   --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.12);
-  --shadow-medium: 0 3px 6px rgba(0, 0, 0, 0.16);
-  --shadow-strong: 0 10px 20px rgba(0, 0, 0, 0.19);
+  --shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-strong: 0 8px 25px rgba(0, 0, 0, 0.15);
   --shadow-glow: 0 0 30px rgba(0, 122, 255, 0.30);
   
   /* Animations */
@@ -39,53 +41,56 @@
   --transition-elastic: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
   /* Variables supplémentaires pour l'interaction */
-  --color-surface-hover: rgba(255, 255, 255, 0.9);
+  --color-surface-hover: #F8F9FA;
+  --color-surface-pressed: #F2F2F7;
 }
 
-/* Thème clair - Palette Apple Health Light Mode */
+/* Thème clair - Apple Health Light Mode */
 .theme-light {
-  --color-primary: #007AFF; /* Bleu Apple */
-  --color-secondary: #5AC8FA; /* Cyan Apple */
+  --color-primary: #007AFF;
+  --color-secondary: #5AC8FA;
   --color-background: #F2F2F7;
-  --color-surface: rgba(255, 255, 255, 0.9);
-  --color-text: #1C1C1E;
-  --color-textSecondary: rgba(28, 28, 30, 0.7);
-  --color-border: rgba(28, 28, 30, 0.1);
-  --color-success: #30D158; /* Vert Apple Health */
-  --color-warning: #FF9500; /* Orange Apple */
-  --color-error: #FF3B30; /* Rouge Apple Health */
-  --color-surface-hover: rgba(255, 255, 255, 0.9);
+  --color-surface: #FFFFFF;
+  --color-text: #000000;
+  --color-textSecondary: #8E8E93;
+  --color-border: rgba(142, 142, 147, 0.2);
+  --color-success: #34C759;
+  --color-warning: #FF9500;
+  --color-error: #FF3B30;
+  --color-surface-hover: #F8F9FA;
+  --color-surface-pressed: #F2F2F7;
   
   /* Couleurs piliers pour mode clair - Apple Health */
-  --pillar-nutrition: #30D158; /* Vert Apple Health */
-  --pillar-sport: #FF9500; /* Orange Apple */
-  --pillar-sleep: #BF5AF2; /* Violet Apple */
-  --pillar-stress: #00C7BE; /* Mint Apple */
-  --pillar-spirituality: #5AC8FA; /* Cyan Apple */
-  --pillar-social: #FF2D92; /* Rose Apple */
+  --pillar-nutrition: #34C759;
+  --pillar-sport: #FF9500;
+  --pillar-sleep: #5856D6;
+  --pillar-stress: #00C7BE;
+  --pillar-spirituality: #5AC8FA;
+  --pillar-social: #FF2D92;
 }
 
-/* Thème sombre - Palette Apple Health Dark Mode */
+/* Thème sombre - Apple Health Dark Mode */
 .theme-dark {
-  --color-primary: #0A84FF; /* Bleu Apple Dark Mode */
-  --color-secondary: #64D2FF; /* Cyan Apple Dark Mode */
-  --color-background: linear-gradient(135deg, #000000 0%, #1C1C1E 50%, #2C2C2E 100%);
-  --color-surface: rgba(255, 255, 255, 0.05);
-  --color-text: #F2F2F7;
-  --color-textSecondary: rgba(242, 242, 247, 0.7);
+  --color-primary: #0A84FF;
+  --color-secondary: #64D2FF;
+  --color-background: #000000;
+  --color-surface: #1C1C1E;
+  --color-text: #FFFFFF;
+  --color-textSecondary: #8E8E93;
   --color-border: rgba(255, 255, 255, 0.1);
-  --color-success: #32D74B; /* Vert Apple Dark Mode */
-  --color-warning: #FF9F0A; /* Orange Apple Dark Mode */
-  --color-error: #FF453A; /* Rouge Apple Dark Mode */
-  --color-surface-hover: rgba(255, 255, 255, 0.1);
+  --color-success: #32D74B;
+  --color-warning: #FF9F0A;
+  --color-error: #FF453A;
+  --color-surface-hover: #2C2C2E;
+  --color-surface-pressed: #3A3A3C;
   
   /* Couleurs piliers pour mode sombre - Apple Health Dark */
-  --pillar-nutrition: #32D74B; /* Vert Apple Health Dark */
-  --pillar-sport: #FF9F0A; /* Orange Apple Dark */
-  --pillar-sleep: #BF5AF2; /* Violet Apple Dark */
-  --pillar-stress: #66D4CF; /* Mint Apple Dark */
-  --pillar-spirituality: #64D2FF; /* Cyan Apple Dark */
-  --pillar-social: #FF375F; /* Rose Apple Dark */
+  --pillar-nutrition: #32D74B;
+  --pillar-sport: #FF9F0A;
+  --pillar-sleep: #5856D6;
+  --pillar-stress: #66D4CF;
+  --pillar-spirituality: #64D2FF;
+  --pillar-social: #FF375F;
 }
 
 * {

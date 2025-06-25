@@ -11,25 +11,24 @@ interface CircularProgressProps {
   animationDuration?: number;
 }
 
-export const CircularProgress: React.FC<CircularProgressProps> = ({
-  score,
+export const CircularProgress: React.FC<CircularProgressProps> = ({  score,
   size = 120,
   strokeWidth = 8,
   showLabel = true,
-  color = '#4CAF50',
+  color = '#34C759',
   animationDuration = 1500
 }) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (score / 100) * circumference;
   const getScoreColor = (score: number): string => {
-    if (score >= 80) return '#34D399'; // Vert menthe doux
-    if (score >= 60) return '#FBBF24'; // Jaune doré doux
-    if (score >= 40) return '#FB923C'; // Orange pêche doux
-    return '#F87171'; // Rouge corail doux
+    if (score >= 80) return '#34C759'; // Apple Health Green
+    if (score >= 60) return '#FF9500'; // Apple Health Orange  
+    if (score >= 40) return '#FF3B30'; // Apple Health Red
+    return '#8E8E93'; // Apple Health Gray
   };
 
-  const scoreColor = color === '#4CAF50' ? getScoreColor(score) : color;
+  const scoreColor = color === '#34C759' ? getScoreColor(score) : color;
 
   return (
     <div className="circular-progress" style={{ width: size, height: size }}>

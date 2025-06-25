@@ -60,13 +60,14 @@ const Journal: React.FC<JournalProps> = ({ onNavigate }) => {
     if (pillar.questions.length === 0) return 0;
     const total = pillar.questions.reduce((sum, q) => sum + q.value, 0);
     return Math.round(total / pillar.questions.length);
+  };  const getSliderColor = (value: number): string => {
+    if (value >= 80) return '#34C759'; // Apple Health Green
+    if (value >= 60) return '#FF9500'; // Apple Health Orange
+    if (value >= 40) return '#FF3B30'; // Apple Health Red
+    return '#8E8E93'; // Apple Health Gray
   };
-
-  const getSliderColor = (value: number): string => {
-    if (value >= 80) return '#10B981';
-    if (value >= 60) return '#F59E0B';
-    if (value >= 40) return '#EF4444';
-    return '#6B7280';
+  const getSliderBackgroundColor = (): string => {
+    return 'rgba(142, 142, 147, 0.3)'; // Apple Health border color - plus opaque pour meilleure visibilité
   };
 
   if (isLoading) {
@@ -127,8 +128,15 @@ const Journal: React.FC<JournalProps> = ({ onNavigate }) => {
                   <label className="question-label">
                     {question.text}
                   </label>
-                  
-                  <div className="slider-container">
+                    <div className="slider-container">
+                    {/* Indicateur de progression visible */}
+                    <div 
+                      className="progress-indicator"
+                      style={{
+                        width: `${question.value}%`,
+                        backgroundColor: getSliderColor(question.value)
+                      }}
+                    />
                     <input
                       type="range"
                       min="0"
@@ -137,7 +145,7 @@ const Journal: React.FC<JournalProps> = ({ onNavigate }) => {
                       onChange={(e) => updateQuestionValue(pillar.id, question.id, Number(e.target.value))}
                       className="question-slider"
                       style={{
-                        background: `linear-gradient(to right, ${getSliderColor(question.value)} 0%, ${getSliderColor(question.value)} ${question.value}%, #e5e7eb ${question.value}%, #e5e7eb 100%)`
+                        background: `linear-gradient(to right, ${getSliderColor(question.value)} 0%, ${getSliderColor(question.value)} ${question.value}%, ${getSliderBackgroundColor()} ${question.value}%, ${getSliderBackgroundColor()} 100%)`
                       }}
                     />
                     <div className="slider-value">

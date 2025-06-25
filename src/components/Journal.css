@@ -2,8 +2,8 @@
   max-width: 480px;
   margin: 0 auto;
   min-height: 100vh;
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  color: white;
+  background: var(--color-background);
+  color: var(--color-text);
 }
 
 .journal-container.loading {
@@ -18,8 +18,8 @@
 .loading-spinner {
   width: 40px;
   height: 40px;
-  border: 4px solid rgba(255, 255, 255, 0.3);
-  border-top: 4px solid white;
+  border: 4px solid var(--color-border);
+  border-top: 4px solid var(--color-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
   margin-bottom: 20px;
@@ -37,9 +37,10 @@
   padding: 20px;
   position: sticky;
   top: 0;
-  background: rgba(240, 147, 251, 0.9);
+  background: var(--color-surface);
   backdrop-filter: blur(10px);
   z-index: 10;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .journal-header h1 {
@@ -58,14 +59,15 @@
   height: 44px;
   border: none;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
+  background: var(--color-surface-hover);
+  color: var(--color-text);
   cursor: pointer;
   transition: all 0.2s ease;
+  border: 1px solid var(--color-border);
 }
 
 .back-button:hover, .save-button:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--color-surface-pressed);
   transform: scale(1.05);
 }
 
@@ -74,7 +76,7 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background: rgba(16, 185, 129, 0.9);
+  background: var(--color-success);
   color: white;
   padding: 12px;
   margin: 0 20px;
@@ -100,12 +102,13 @@
 }
 
 .pillar-section {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-surface);
   backdrop-filter: blur(10px);
   border-radius: 16px;
   margin-bottom: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid var(--color-border);
   overflow: hidden;
+  box-shadow: var(--shadow-soft);
 }
 
 .pillar-section-header {
@@ -113,7 +116,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-surface-hover);
 }
 
 .pillar-info {
@@ -133,9 +136,10 @@
 }
 
 .pillar-score-badge {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--color-surface-hover);
   padding: 8px 16px;
   border-radius: 20px;
+  border: 1px solid var(--color-border);
 }
 
 .pillar-score-text {
@@ -157,7 +161,7 @@
   font-weight: 500;
   margin-bottom: 15px;
   line-height: 1.4;
-  color: rgba(255, 255, 255, 0.95);
+  color: var(--color-text);
 }
 
 .slider-container {
@@ -165,41 +169,128 @@
   align-items: center;
   gap: 15px;
   margin-bottom: 8px;
+  position: relative;
 }
 
 .question-slider {
   flex: 1;
-  height: 8px;
-  border-radius: 4px;
+  height: 12px; /* Plus épais */
+  border-radius: 8px; /* Plus arrondi */
   outline: none;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
+  background: rgba(142, 142, 147, 0.2) !important;
+  -webkit-appearance: none;
+  appearance: none;
+  position: relative;
+  z-index: 1;
 }
 
+/* Piste du slider - WebKit */
+.question-slider::-webkit-slider-track {
+  height: 12px;
+  border-radius: 8px;
+  background: rgba(142, 142, 147, 0.2);
+}
+
+/* Poignée du slider - WebKit - Style Apple Health */
 .question-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
   appearance: none;
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: white;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease;
+  box-shadow: 
+    0 2px 10px rgba(0, 0, 0, 0.2),
+    0 0 0 2px rgba(255, 255, 255, 0.8),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 3;
 }
 
 .question-slider::-webkit-slider-thumb:hover {
-  transform: scale(1.1);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transform: scale(1.15);
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.25),
+    0 0 0 3px rgba(255, 255, 255, 0.9),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
+.question-slider::-webkit-slider-thumb:active {
+  transform: scale(1.25);
+  box-shadow: 
+    0 6px 25px rgba(0, 0, 0, 0.3),
+    0 0 0 4px rgba(255, 255, 255, 1),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* Firefox */
 .question-slider::-moz-range-thumb {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   background: white;
   cursor: pointer;
-  border: none;
+  border: 2px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 3;
+}
+
+.question-slider::-moz-range-track {
+  height: 12px;
+  border-radius: 8px;
+  background: rgba(142, 142, 147, 0.2) !important;
+  border: none;
+}
+
+/* Effet de glow au focus */
+.question-slider:focus {
+  outline: none;
+}
+
+.question-slider:focus::-webkit-slider-thumb {
+  box-shadow: 
+    0 0 0 3px rgba(59, 130, 246, 0.5),
+    0 4px 20px rgba(0, 0, 0, 0.25),
+    0 0 0 6px rgba(255, 255, 255, 0.9);
+}
+
+/* Force la visibilité de la progression du slider avec un style spécifique */
+.slider-container .question-slider {
+  position: relative;
+  background: rgba(142, 142, 147, 0.3) !important;
+}
+
+/* Ajouter un indicateur visuel de progression alternative */
+.slider-container::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 12px;
+  border-radius: 8px;
+  background: rgba(142, 142, 147, 0.3);
+  width: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.progress-indicator {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 12px;
+  border-radius: 8px;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .slider-value {
@@ -216,7 +307,7 @@
   display: flex;
   justify-content: space-between;
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--color-textSecondary);
   margin-top: 5px;
 }
 
@@ -228,9 +319,10 @@
   width: 100%;
   max-width: 480px;
   padding: 20px;
-  background: rgba(245, 87, 108, 0.9);
+  background: var(--color-surface);
   backdrop-filter: blur(10px);
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: 1px solid var(--color-border);
+  box-shadow: var(--shadow-medium);
 }
 
 .save-and-go-home-button {
@@ -242,7 +334,7 @@
   padding: 15px;
   border: none;
   border-radius: 12px;
-  background: linear-gradient(45deg, #10B981, #059669);
+  background: var(--gradient-success);
   color: white;
   font-size: 1rem;
   font-weight: 600;
@@ -251,8 +343,9 @@
 }
 
 .save-and-go-home-button:hover {
-  background: linear-gradient(45deg, #059669, #047857);
+  background: var(--color-success);
   transform: translateY(-1px);
+  box-shadow: var(--shadow-medium);
 }
 
 /* Responsive */

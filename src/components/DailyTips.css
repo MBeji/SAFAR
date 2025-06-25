@@ -1,0 +1,201 @@
+.daily-tips {
+  background: var(--color-surface);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  padding: 24px;
+  margin: 24px 0;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-soft);
+  transition: var(--transition-smooth);
+}
+
+.daily-tips:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.daily-tips-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 20px 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.daily-tips-title svg {
+  color: var(--color-primary);
+  filter: drop-shadow(0 0 8px rgba(139, 124, 246, 0.3));
+}
+
+.tips-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.tip-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  border-radius: 16px;
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.tip-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--gradient-primary);
+  transition: var(--transition-smooth);
+}
+
+.tip-card:hover {
+  transform: translateX(4px);
+}
+
+.tip-card:hover::before {
+  width: 6px;
+}
+
+.tip-success {
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.1) 0%, rgba(52, 211, 153, 0.1) 100%);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+}
+
+.tip-success::before {
+  background: var(--gradient-success);
+}
+
+.tip-info {
+  background: linear-gradient(135deg, rgba(139, 124, 246, 0.1) 0%, rgba(167, 139, 250, 0.1) 100%);
+  border: 1px solid rgba(139, 124, 246, 0.2);
+}
+
+.tip-warning {
+  background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(252, 211, 77, 0.1) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+.tip-warning::before {
+  background: var(--gradient-warning);
+}
+
+.tip-improvement {
+  background: linear-gradient(135deg, rgba(196, 181, 253, 0.1) 0%, rgba(221, 214, 254, 0.1) 100%);
+  border: 1px solid rgba(196, 181, 253, 0.2);
+}
+
+.tip-improvement::before {
+  background: var(--gradient-purple);
+}
+
+.tip-celebration {
+  background: linear-gradient(135deg, rgba(254, 202, 202, 0.1) 0%, rgba(252, 165, 165, 0.1) 100%);
+  border: 1px solid rgba(254, 202, 202, 0.2);
+}
+
+.tip-celebration::before {
+  background: linear-gradient(135deg, #FECACA 0%, #F87171 100%);
+}
+
+.tip-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  color: var(--color-primary);
+  transition: var(--transition-smooth);
+}
+
+.tip-success .tip-icon {
+  color: var(--color-success);
+  background: rgba(34, 211, 238, 0.1);
+}
+
+.tip-warning .tip-icon {
+  color: var(--color-warning);
+  background: rgba(251, 191, 36, 0.1);
+}
+
+.tip-improvement .tip-icon {
+  color: var(--color-secondary);
+  background: rgba(196, 181, 253, 0.1);
+}
+
+.tip-celebration .tip-icon {
+  color: #F87171;
+  background: rgba(254, 202, 202, 0.1);
+}
+
+.tip-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.tip-title {
+  margin: 0 0 8px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  line-height: 1.3;
+}
+
+.tip-message {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-textSecondary);
+  line-height: 1.5;
+}
+
+/* Animations */
+@keyframes tipPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.tip-card:hover .tip-icon {
+  animation: tipPulse 0.6s ease-in-out;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .daily-tips {
+    margin: 16px 0;
+    padding: 20px;
+  }
+
+  .tip-card {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .tip-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .tip-title {
+    font-size: 0.95rem;
+  }
+
+  .tip-message {
+    font-size: 0.85rem;
+  }
+}

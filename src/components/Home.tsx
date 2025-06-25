@@ -4,6 +4,7 @@ import { DataService } from '../services/DataService';
 import { Calendar, TrendingUp, Edit3, Bell, HelpCircle } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
 import NotificationSettings from './NotificationSettings';
+import DailyTips from './DailyTips';
 import { CircularProgress, PillarsRadar } from './CircularProgress';
 import { useNotifications } from '../hooks/useNotifications';
 import './Home.css';
@@ -144,9 +145,7 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onOpenQuickStart }) => {
               ></div>
             </div>
           </div>        ))}
-      </div>
-
-      {/* Radar des piliers */}
+      </div>      {/* Radar des piliers */}
       {todayEntry && (
         <PillarsRadar 
           pillars={todayEntry.pillars.map(p => ({
@@ -154,6 +153,14 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onOpenQuickStart }) => {
             score: p.score,
             color: p.color
           }))}
+        />
+      )}
+
+      {/* Conseils quotidiens */}
+      {todayEntry && (
+        <DailyTips 
+          pillars={todayEntry.pillars}
+          globalScore={todayEntry.globalScore}
         />
       )}
 

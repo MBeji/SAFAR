@@ -1,13 +1,19 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Home from './components/Home';
 import Journal from './components/Journal';
 import Stats from './components/Stats';
+import { ThemeService } from './services/ThemeService';
 import './App.css';
 
 type Page = 'home' | 'journal' | 'stats';
 
 function App() {
   const [currentPage, setCurrentPage] = useState<Page>('home');
+
+  useEffect(() => {
+    // Initialiser le thème au chargement de l'application
+    ThemeService.initTheme();
+  }, []);
 
   const handleNavigate = (page: Page) => {
     setCurrentPage(page);

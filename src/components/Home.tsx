@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import type { DailyEntry } from '../types';
 import { DataService } from '../services/DataService';
 import { Calendar, TrendingUp, Edit3 } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 import './Home.css';
 
 interface HomeProps {
@@ -54,9 +55,11 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   }
 
   return (
-    <div className="home-container">
-      <header className="home-header">
-        <h1>Mon Bien-être</h1>
+    <div className="home-container">      <header className="home-header">
+        <div className="header-content">
+          <h1>Mon Bien-être</h1>
+          <ThemeToggle />
+        </div>
         <p className="date">
           <Calendar size={18} />
           {new Date().toLocaleDateString('fr-FR', { 

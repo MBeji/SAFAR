@@ -70,8 +70,7 @@ export class ThemeService {
       return prefersDark ? DARK_THEME : LIGHT_THEME;
     }
     return theme === 'dark' ? DARK_THEME : LIGHT_THEME;
-  }
-  static applyTheme(theme: Theme): void {
+  }  static applyTheme(theme: Theme): void {
     const config = this.getThemeConfig(theme);
     const root = document.documentElement;
 
@@ -80,13 +79,25 @@ export class ThemeService {
       root.style.setProperty(`--color-${key}`, value);
     });
 
-    // Appliquer aussi le background sur body pour être sûr
+    // Appliquer directement sur body pour être sûr
     document.body.style.background = config.colors.background;
     document.body.style.color = config.colors.text;
+
+    // Forcer le style sur les conteneurs principaux
+    const containers = document.querySelectorAll('.home-container, .App, #root');
+    containers.forEach(container => {
+      const element = container as HTMLElement;
+      element.style.background = config.colors.background;
+      element.style.color = config.colors.text;
+    });
 
     // Ajouter une classe pour les styles spécifiques
     root.className = root.className.replace(/theme-\w+/g, '');
     root.classList.add(`theme-${config.theme}`);
+    
+    // Aussi appliquer la classe sur body
+    document.body.className = document.body.className.replace(/theme-\w+/g, '');
+    document.body.classList.add(`theme-${config.theme}`);
   }
 
   static initTheme(): void {

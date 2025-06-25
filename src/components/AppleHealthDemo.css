@@ -1,0 +1,376 @@
+/* Apple Health Demo Styles */
+.apple-health-demo {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+.demo-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.demo-header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #FF3B30, #007AFF, #30D158);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1rem;
+}
+
+.demo-header p {
+  font-size: 1.2rem;
+  color: #64748b;
+  margin-bottom: 2rem;
+}
+
+/* Color Palette Section */
+.color-palette-section {
+  margin-bottom: 3rem;
+}
+
+.color-palette-section h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.color-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.color-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.color-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.color-sample {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.health-red .color-sample {
+  background: #FF3B30;
+}
+
+.activity-green .color-sample {
+  background: #30D158;
+}
+
+.apple-blue .color-sample {
+  background: #007AFF;
+}
+
+.mindfulness-purple .color-sample {
+  background: #BF5AF2;
+}
+
+.fitness-orange .color-sample {
+  background: #FF9500;
+}
+
+.cycle-pink .color-sample {
+  background: #FF2D92;
+}
+
+.color-info h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.color-info code {
+  background: #f1f5f9;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #475569;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.color-info p {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Gradients Section */
+.gradients-section {
+  margin-bottom: 3rem;
+}
+
+.gradients-section h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.gradient-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.gradient-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.gradient-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.gradient-sample {
+  width: 100%;
+  height: 80px;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.gradient-health {
+  background: linear-gradient(135deg, #FF3B30 0%, #FF6B6B 50%, #FFB3B3 100%);
+}
+
+.gradient-activity {
+  background: linear-gradient(135deg, #30D158 0%, #32D74B 50%, #66E673 100%);
+}
+
+.gradient-mindfulness {
+  background: linear-gradient(135deg, #BF5AF2 0%, #DA70D6 50%, #E6B3FA 100%);
+}
+
+.gradient-fitness {
+  background: linear-gradient(135deg, #FF9500 0%, #FF6B35 50%, #FFB366 100%);
+}
+
+.gradient-system {
+  background: linear-gradient(135deg, #007AFF 0%, #5AC8FA 50%, #64D2FF 100%);
+}
+
+.gradient-dark {
+  background: linear-gradient(135deg, #1C1C1E 0%, #2C2C2E 50%, #3A3A3C 100%);
+}
+
+.gradient-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.gradient-card p {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Features Section */
+.features-section {
+  margin-bottom: 3rem;
+}
+
+.features-section h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.feature-card p {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Instructions Section */
+.instructions-section {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.instructions-section h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.instructions {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.instruction {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 12px;
+  border-left: 4px solid #007AFF;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #007AFF;
+  color: white;
+  font-weight: 600;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.instruction h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.instruction p {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin: 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .apple-health-demo {
+    padding: 1rem;
+  }
+
+  .demo-header h1 {
+    font-size: 2rem;
+  }
+
+  .demo-header p {
+    font-size: 1rem;
+  }
+
+  .color-grid,
+  .gradient-grid,
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .color-card {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .instruction {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+/* Dark Theme Support */
+[data-theme="dark"] .apple-health-demo {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .demo-header,
+[data-theme="dark"] .color-card,
+[data-theme="dark"] .gradient-card,
+[data-theme="dark"] .feature-card,
+[data-theme="dark"] .instructions-section {
+  background: #1e293b;
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .demo-header h1 {
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="dark"] .color-info h3,
+[data-theme="dark"] .gradient-card h3,
+[data-theme="dark"] .feature-card h3,
+[data-theme="dark"] .instructions-section h2,
+[data-theme="dark"] .instruction h4 {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .color-info code {
+  background: #374151;
+  color: #d1d5db;
+}
+
+[data-theme="dark"] .instruction {
+  background: #374151;
+}

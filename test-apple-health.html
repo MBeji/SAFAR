@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Apple Health Theme</title>
+  <style>
+    /* Apple Health Color Palette Test */
+    :root {
+      --apple-health-red: #FF3B30;
+      --apple-health-blue: #007AFF;
+      --apple-health-green: #30D158;
+      --apple-health-orange: #FF9500;
+      --apple-health-purple: #BF5AF2;
+      --apple-health-cyan: #5AC8FA;
+      
+      /* Gradients Apple Health */
+      --gradient-health: linear-gradient(135deg, var(--apple-health-red) 0%, #FF6B6B 50%, #FFB3B3 100%);
+      --gradient-activity: linear-gradient(135deg, var(--apple-health-green) 0%, #32D74B 50%, #66E673 100%);
+      --gradient-mindfulness: linear-gradient(135deg, var(--apple-health-purple) 0%, #DA70D6 50%, #E6B3FA 100%);
+      --gradient-fitness: linear-gradient(135deg, var(--apple-health-orange) 0%, #FF6B35 50%, #FFB366 100%);
+      --gradient-system: linear-gradient(135deg, var(--apple-health-blue) 0%, var(--apple-health-cyan) 50%, #64D2FF 100%);
+      --gradient-dark: linear-gradient(135deg, #1C1C1E 0%, #2C2C2E 50%, #3A3A3C 100%);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      margin: 0;
+      padding: 20px;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, #FF3B30, #007AFF, #30D158);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 2rem;
+    }
+
+    .color-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .color-card {
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .color-card:hover {
+      transform: translateY(-2px);
+    }
+
+    .color-sample {
+      width: 100%;
+      height: 80px;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .health { background: var(--gradient-health); }
+    .activity { background: var(--gradient-activity); }
+    .mindfulness { background: var(--gradient-mindfulness); }
+    .fitness { background: var(--gradient-fitness); }
+    .system { background: var(--gradient-system); }
+    .dark { background: var(--gradient-dark); }
+
+    .color-name {
+      font-weight: 600;
+      color: #1e293b;
+      margin-bottom: 0.5rem;
+    }
+
+    .color-desc {
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    .status {
+      background: white;
+      border-radius: 12px;
+      padding: 1rem;
+      margin: 2rem 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .success {
+      color: var(--apple-health-green);
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">🍎 Apple Health Theme</h1>
+    
+    <div class="status">
+      <p class="success">✅ Couleurs Apple Health intégrées avec succès !</p>
+      <p>Les thèmes utilisent maintenant la palette officielle de l'application Santé d'iPhone.</p>
+    </div>
+
+    <div class="color-grid">
+      <div class="color-card">
+        <div class="color-sample health"></div>
+        <div class="color-name">Santé Générale</div>
+        <div class="color-desc">Rouge énergisant #FF3B30</div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-sample activity"></div>
+        <div class="color-name">Activité</div>
+        <div class="color-desc">Vert motivant #30D158</div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-sample mindfulness"></div>
+        <div class="color-name">Pleine Conscience</div>
+        <div class="color-desc">Violet apaisant #BF5AF2</div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-sample fitness"></div>
+        <div class="color-name">Entraînement</div>
+        <div class="color-desc">Orange dynamique #FF9500</div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-sample system"></div>
+        <div class="color-name">Système</div>
+        <div class="color-desc">Bleu Apple #007AFF</div>
+      </div>
+
+      <div class="color-card">
+        <div class="color-sample dark"></div>
+        <div class="color-name">Mode Sombre</div>
+        <div class="color-desc">Gris Apple #1C1C1E</div>
+      </div>
+    </div>
+
+    <div class="status">
+      <p><strong>Thèmes disponibles :</strong></p>
+      <p>🌅 Jour • 🌙 Nuit • 🔄 Auto • ⚡ Focus • 🏃 Sport • 🧘 Détente</p>
+    </div>
+  </div>
+</body>
+</html>

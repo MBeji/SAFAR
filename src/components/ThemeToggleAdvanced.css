@@ -1,0 +1,645 @@
+/* Apple Health Color Palette */
+:root {
+  --apple-health-red: #FF3B30;
+  --apple-health-blue: #007AFF;
+  --apple-health-green: #30D158;
+  --apple-health-orange: #FF9500;
+  --apple-health-purple: #BF5AF2;
+  --apple-health-pink: #FF2D92;
+  --apple-health-cyan: #5AC8FA;
+  --apple-health-mint: #00C7BE;
+  
+  /* Gradients Apple Health */
+  --gradient-health: linear-gradient(135deg, var(--apple-health-red) 0%, #FF6B6B 50%, #FFB3B3 100%);
+  --gradient-activity: linear-gradient(135deg, var(--apple-health-green) 0%, #32D74B 50%, #66E673 100%);
+  --gradient-mindfulness: linear-gradient(135deg, var(--apple-health-purple) 0%, #DA70D6 50%, #E6B3FA 100%);
+  --gradient-fitness: linear-gradient(135deg, var(--apple-health-orange) 0%, #FF6B35 50%, #FFB366 100%);
+  --gradient-system: linear-gradient(135deg, var(--apple-health-blue) 0%, var(--apple-health-cyan) 50%, #64D2FF 100%);
+  --gradient-dark: linear-gradient(135deg, #1C1C1E 0%, #2C2C2E 50%, #3A3A3C 100%);
+  
+  /* Shadows Apple Style */
+  --shadow-subtle: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-medium: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  --shadow-elevated: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  --shadow-floating: 0 20px 60px rgba(0, 0, 0, 0.15), 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* Theme Toggle Advanced Styles */
+.theme-toggle-advanced-container {
+  position: relative;
+  display: inline-block;
+}
+
+/* Bouton principal - Style Apple Health */
+.theme-toggle-advanced {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-medium);
+  backdrop-filter: blur(10px);
+  min-height: 48px;
+  outline: none;
+  border: 2px solid transparent;
+}
+
+.theme-toggle-advanced:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: var(--shadow-elevated);
+}
+
+.theme-toggle-advanced:active {
+  transform: translateY(-1px) scale(1.01);
+}
+
+.theme-toggle-advanced.dropdown-open {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-floating);
+}
+
+/* Icône avec animation améliorée */
+.theme-toggle-advanced .theme-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  z-index: 2;
+}
+
+.theme-toggle-advanced:hover .theme-icon {
+  transform: rotate(20deg) scale(1.15);
+}
+
+.theme-toggle-advanced.animating .theme-icon {
+  animation: advancedIconSpin 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes advancedIconSpin {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(90deg) scale(1.3); }
+  50% { transform: rotate(180deg) scale(1.1); }
+  75% { transform: rotate(270deg) scale(1.3); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Effet de brillance amélioré */
+.theme-toggle-advanced .theme-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.5), 
+    transparent
+  );
+  transition: left 0.8s ease;
+  z-index: 1;
+}
+
+.theme-toggle-advanced:hover .theme-shine {
+  left: 100%;
+}
+
+/* Menu déroulant avancé */
+.theme-dropdown-advanced {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  background: var(--color-surface, rgba(255, 255, 255, 0.95));
+  backdrop-filter: blur(25px);
+  border: 1px solid var(--color-border, rgba(0, 0, 0, 0.1));
+  border-radius: 20px;
+  padding: 16px;
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.15),
+    0 8px 24px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  z-index: 1000;
+  min-width: 280px;
+  max-width: 320px;
+  opacity: 0;
+  transform: translateY(-15px) scale(0.95);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.theme-dropdown-advanced.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: all;
+}
+
+/* Header du dropdown */
+.dropdown-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+  border-radius: 12px;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--color-text, #374151);
+}
+
+.header-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 8px;
+  color: var(--color-primary, #6366F1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+  background: rgba(99, 102, 241, 0.2);
+  transform: scale(1.05);
+}
+
+/* Sections */
+.themes-section, .favorites-section, .recent-section {
+  margin-bottom: 16px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-secondary, #6B7280);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+  padding: 0 8px;
+}
+
+/* Favoris */
+.favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.favorite-theme {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.favorite-theme:hover {
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Récents */
+.recent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.recent-theme {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  background: var(--color-surface, rgba(255, 255, 255, 0.5));
+  border: 1px solid var(--color-border, rgba(0, 0, 0, 0.05));
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.8rem;
+}
+
+.recent-theme:hover {
+  background: var(--color-surface-hover, rgba(0, 0, 0, 0.05));
+  transform: translateX(4px);
+}
+
+.recent-icon {
+  display: flex;
+  align-items: center;
+  color: var(--color-text-secondary, #6B7280);
+}
+
+.recent-label {
+  flex: 1;
+  font-weight: 500;
+  color: var(--color-text, #374151);
+}
+
+.recent-time {
+  font-size: 0.7rem;
+  color: var(--color-text-secondary, #9CA3AF);
+}
+
+/* Options de thème avancées */
+.theme-option-advanced {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: var(--color-text, #374151);
+  font-size: 0.9rem;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.theme-option-advanced:hover {
+  background: var(--color-surface-hover, rgba(0, 0, 0, 0.05));
+  transform: translateX(6px);
+}
+
+.theme-option-advanced.active {
+  color: white;
+  font-weight: 600;
+  box-shadow: 
+    0 6px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: translateX(6px) scale(1.02);
+}
+
+.theme-option-advanced.contextual {
+  border-left: 3px solid transparent;
+}
+
+.theme-option-advanced.contextual:hover {
+  border-left-color: var(--color-primary, #6366F1);
+}
+
+.theme-option-advanced.contextual.active {
+  border-left-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Actions des options */
+.theme-option-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: all 0.2s ease;
+}
+
+.theme-option-advanced:hover .theme-option-actions {
+  opacity: 1;
+}
+
+.favorite-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  color: var(--color-text-secondary, #9CA3AF);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.favorite-btn:hover {
+  background: rgba(255, 215, 0, 0.1);
+  border-color: #FFD700;
+  color: #FFD700;
+  transform: scale(1.1);
+}
+
+.favorite-btn.active {
+  background: #FFD700;
+  border-color: #FFD700;
+  color: white;
+}
+
+/* Footer avancé */
+.dropdown-footer {
+  margin-top: 16px;
+  padding: 12px 16px;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.02));
+  border-radius: 12px;
+  text-align: center;
+}
+
+.dropdown-footer small {
+  font-size: 0.7rem;
+  color: var(--color-text-secondary, #9CA3AF);
+  line-height: 1.4;
+}
+
+/* Easter Egg */
+.easter-egg-notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4, #FFEAA7, #DDA0DD);
+  background-size: 400% 400%;
+  animation: rainbowGradient 2s ease infinite;
+  color: white;
+  padding: 20px 30px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1.2rem;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  z-index: 10000;
+  animation: easterEggAppear 3s ease-in-out;
+}
+
+@keyframes rainbowGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes easterEggAppear {
+  0% { 
+    opacity: 0; 
+    transform: translate(-50%, -50%) scale(0.5) rotate(-180deg); 
+  }
+  20% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1.2) rotate(0deg); 
+  }
+  80% { 
+    opacity: 1; 
+    transform: translate(-50%, -50%) scale(1) rotate(0deg); 
+  }
+  100% { 
+    opacity: 0; 
+    transform: translate(-50%, -50%) scale(0.8) rotate(180deg); 
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .theme-toggle-advanced {
+    padding: 14px;
+    gap: 0;
+    min-width: 52px;
+    justify-content: center;
+  }
+  
+  .theme-label,
+  .dropdown-arrow {
+    display: none;
+  }
+  
+  .theme-dropdown-advanced {
+    right: -60px;
+    min-width: 260px;
+    max-width: 280px;
+  }
+
+  .favorites-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* Dark Theme */
+[data-theme="dark"] .theme-dropdown-advanced {
+  background: rgba(31, 41, 55, 0.95);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .theme-option-advanced {
+  color: #E5E7EB;
+}
+
+[data-theme="dark"] .theme-option-advanced:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .recent-theme {
+  background: rgba(55, 65, 81, 0.8);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .action-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #E5E7EB;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle-advanced,
+  .theme-icon,
+  .theme-dropdown-advanced,
+  .theme-option-advanced,
+  .theme-shine,
+  .favorite-theme,
+  .easter-egg-notification {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Thèmes Apple Health Specific Styles */
+
+/* Thème Jour - Rouge Santé Apple */
+.theme-toggle-advanced[data-current-theme="light"] {
+  background: var(--gradient-health);
+  color: white;
+}
+
+.theme-toggle-advanced[data-current-theme="light"]:hover {
+  filter: brightness(1.1) saturate(1.1);
+}
+
+/* Thème Nuit - Gris Apple */
+.theme-toggle-advanced[data-current-theme="dark"] {
+  background: var(--gradient-dark);
+  color: white;
+}
+
+.theme-toggle-advanced[data-current-theme="dark"]:hover {
+  filter: brightness(1.2);
+}
+
+/* Thème Auto - Bleu Apple */
+.theme-toggle-advanced[data-current-theme="auto"] {
+  background: var(--gradient-system);
+  color: white;
+}
+
+.theme-toggle-advanced[data-current-theme="auto"]:hover {
+  filter: brightness(1.1) saturate(1.1);
+}
+
+/* Thème Focus - Vert Activité Apple */
+.theme-toggle-advanced[data-current-theme="focus"] {
+  background: var(--gradient-activity);
+  color: white;
+}
+
+.theme-toggle-advanced[data-current-theme="focus"]:hover {
+  filter: brightness(1.1) saturate(1.1);
+}
+
+/* Thème Sport - Orange Forme Apple */
+.theme-toggle-advanced[data-current-theme="workout"] {
+  background: var(--gradient-fitness);
+  color: white;
+}
+
+.theme-toggle-advanced[data-current-theme="workout"]:hover {
+  filter: brightness(1.1) saturate(1.1);
+}
+
+/* Thème Détente - Violet Pleine Conscience Apple */
+.theme-toggle-advanced[data-current-theme="relax"] {
+  background: var(--gradient-mindfulness);
+  color: white;
+}
+
+.theme-toggle-advanced[data-current-theme="relax"]:hover {
+  filter: brightness(1.1) saturate(1.1);
+}
+
+/* Options de thème dans le dropdown */
+.theme-option-advanced[data-theme="light"] {
+  border-left: 3px solid var(--apple-health-red);
+}
+
+.theme-option-advanced[data-theme="dark"] {
+  border-left: 3px solid #3A3A3C;
+}
+
+.theme-option-advanced[data-theme="auto"] {
+  border-left: 3px solid var(--apple-health-blue);
+}
+
+.theme-option-advanced[data-theme="focus"] {
+  border-left: 3px solid var(--apple-health-green);
+}
+
+.theme-option-advanced[data-theme="workout"] {
+  border-left: 3px solid var(--apple-health-orange);
+}
+
+.theme-option-advanced[data-theme="relax"] {
+  border-left: 3px solid var(--apple-health-purple);
+}
+
+/* Header du dropdown avec couleurs Apple */
+.dropdown-header {
+  background: linear-gradient(135deg, 
+    rgba(255, 59, 48, 0.1), 
+    rgba(0, 122, 255, 0.1), 
+    rgba(48, 209, 88, 0.1)
+  );
+  border: 1px solid rgba(0, 122, 255, 0.2);
+}
+
+/* Action buttons avec couleurs Apple */
+.action-btn {
+  background: rgba(0, 122, 255, 0.1);
+  border: 1px solid rgba(0, 122, 255, 0.2);
+  color: var(--apple-health-blue);
+}
+
+.action-btn:hover {
+  background: rgba(0, 122, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* Boutons favoris avec couleur Apple */
+.favorite-btn.favorited {
+  background: rgba(255, 149, 0, 0.1);
+  border-color: var(--apple-health-orange);
+  color: var(--apple-health-orange);
+}
+
+/* Effet de pulsation Apple Health */
+.theme-toggle-advanced.pulsing {
+  animation: appleHealthPulse 2s ease-in-out infinite;
+}
+
+@keyframes appleHealthPulse {
+  0% { 
+    transform: translateY(-2px) scale(1);
+    filter: brightness(1);
+  }
+  50% { 
+    transform: translateY(-2px) scale(1.02);
+    filter: brightness(1.1) saturate(1.1);
+  }
+  100% { 
+    transform: translateY(-2px) scale(1);
+    filter: brightness(1);
+  }
+}
+
+/* Effet de brillance Apple */
+.theme-toggle-advanced .theme-shine {
+  background: linear-gradient(
+    90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.6), 
+    transparent
+  );
+}
+
+/* Adaptation pour mode sombre */
+[data-theme="dark"] .dropdown-header {
+  background: linear-gradient(135deg, 
+    rgba(255, 59, 48, 0.15), 
+    rgba(0, 122, 255, 0.15), 
+    rgba(48, 209, 88, 0.15)
+  );
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .action-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #E5E7EB;
+}

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import type { DailyEntry } from '../types';
 import { DataService } from '../services/DataService';
-import { Calendar, TrendingUp, Edit3 } from 'lucide-react';
+import { Calendar, TrendingUp, Edit3, Bell } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import NotificationSettings from './NotificationSettings';
+import { useNotifications } from '../hooks/useNotifications';
 import './Home.css';
 
 interface HomeProps {
@@ -12,10 +14,31 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   const [todayEntry, setTodayEntry] = useState<DailyEntry | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
+  const [showNotificationSettings, setShowNotificationSettings] = useState(false);
+  
+  const { showCongratulation, showWarning } = useNotifications();
   useEffect(() => {
     loadTodayData();
   }, []);
+
+  useEffect(() => {
+    // Déclencher les notifications basées sur les scores
+    if (todayEntry) {
+      const globalScore = todayEntry.globalScore;
+      
+      // Notification de félicitations si score élevé
+      if (globalScore >= 80) {
+        showCongratulation(globalScore);
+      }
+      
+      // Notifications d'avertissement pour les piliers faibles
+      todayEntry.pillars.forEach(pillar => {
+        if (pillar.score < 40) {
+          showWarning(pillar.name, pillar.score);
+        }
+      });
+    }
+  }, [todayEntry, showCongratulation, showWarning]);
 
   const loadTodayData = () => {
     setIsLoading(true);
@@ -55,10 +78,18 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
   }
 
   return (
-    <div className="home-container">      <header className="home-header">
-        <div className="header-content">
+    <div className="home-container">      <header className="home-header">        <div className="header-content">
           <h1>Mon Bien-être</h1>
-          <ThemeToggle />
+          <div className="header-actions">
+            <button 
+              className="notification-button"
+              onClick={() => setShowNotificationSettings(true)}
+              title="Paramètres de notifications"
+            >
+              <Bell size={18} />
+            </button>
+            <ThemeToggle />
+          </div>
         </div>
         <p className="date">
           <Calendar size={18} />
@@ -129,10 +160,14 @@ const Home: React.FC<HomeProps> = ({ onNavigate }) => {
           className="action-button secondary"
           onClick={() => onNavigate('stats')}
         >
-          <TrendingUp size={20} />
-          Statistiques
+          <TrendingUp size={20} />          Statistiques
         </button>
       </div>
+
+      <NotificationSettings 
+        isOpen={showNotificationSettings}
+        onClose={() => setShowNotificationSettings(false)}
+      />
     </div>
   );
 };

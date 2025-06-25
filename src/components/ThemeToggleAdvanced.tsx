@@ -21,8 +21,7 @@ interface ThemeHistory {
 const ThemeToggleAdvanced: React.FC = () => {
   const { currentTheme, setTheme } = useTheme();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [recentThemes, setRecentThemes] = useState<ThemeHistory[]>([]);
+  const [isAnimating, setIsAnimating] = useState(false);  const [recentThemes, setRecentThemes] = useState<ThemeHistory[]>([]);
   const [favoriteThemes, setFavoriteThemes] = useState<Set<string>>(new Set());
   const [konamiSequence, setKonamiSequence] = useState<string[]>([]);
   const [showEasterEgg, setShowEasterEgg] = useState(false);
@@ -106,19 +105,17 @@ const ThemeToggleAdvanced: React.FC = () => {
           handleRandomTheme();
           break;
       }
+    }    // Konami Code detection
+    const newSequence = [...konamiSequence, event.code].slice(-KONAMI_CODE.length);
+    
+    if (newSequence.length === KONAMI_CODE.length && 
+        newSequence.every((key, index) => key === KONAMI_CODE[index])) {
+      setShowEasterEgg(true);
+      setTimeout(() => setShowEasterEgg(false), 3000);
+      setKonamiSequence([]);
+    } else {
+      setKonamiSequence(newSequence);
     }
-
-    // Konami Code detection
-    setKonamiSequence(prev => {
-      const newSequence = [...prev, event.code].slice(-KONAMI_CODE.length);
-      if (newSequence.length === KONAMI_CODE.length && 
-          newSequence.every((key, index) => key === KONAMI_CODE[index])) {
-        setShowEasterEgg(true);
-        setTimeout(() => setShowEasterEgg(false), 3000);
-        return [];
-      }
-      return newSequence;
-    });
   }, []);
 
   // Gestionnaire de changement de thème avec historique

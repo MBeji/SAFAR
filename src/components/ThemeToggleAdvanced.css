@@ -31,9 +31,11 @@
   /* Assurer que le menu peut déborder */
   overflow: visible;
   z-index: 1000;
+  /* Fix pour l'affichage du menu au-dessus du contenu */
+  isolation: isolate;
 }
 
-/* Bouton principal - Style Apple Health avec contours */
+/* Bouton principal - Style Apple Health avec contours et icône visible */
 .theme-toggle-advanced {
   display: flex;
   align-items: center;
@@ -55,6 +57,15 @@
   min-height: 48px;
   outline: none;
   background: linear-gradient(135deg, rgba(0, 122, 255, 0.9), rgba(90, 200, 250, 0.9));
+  /* S'assurer que le texte et les icônes sont visibles */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Style spécifique pour l'icône pour s'assurer qu'elle est visible */
+.theme-toggle-advanced .theme-icon svg,
+.theme-toggle-advanced .dropdown-arrow svg {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+  color: white;
 }
 
 .theme-toggle-advanced:hover {
@@ -123,7 +134,7 @@
   left: 100%;
 }
 
-/* Menu déroulant avancé - Responsive */
+/* Menu déroulant avancé - Responsive avec z-index élevé */
 .theme-dropdown-advanced {
   position: absolute;
   top: calc(100% + 12px);
@@ -137,7 +148,7 @@
     0 20px 60px rgba(0, 0, 0, 0.15),
     0 8px 24px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  z-index: 9999;
+  z-index: 99999; /* Z-index très élevé pour passer au-dessus du contenu */
   min-width: 280px;
   max-width: 320px;
   opacity: 0;
@@ -146,6 +157,8 @@
   pointer-events: none;
   max-height: 80vh;
   overflow-y: auto;
+  /* Forcer l'affichage au-dessus */
+  isolation: isolate;
 }
 
 .theme-dropdown-advanced.open {
@@ -764,4 +777,21 @@
   background: rgba(255, 255, 255, 0.1);
   border-color: rgba(255, 255, 255, 0.2);
   color: #E5E7EB;
+}
+
+/* Responsive - Assurer l'affichage correct du menu sur tous les écrans */
+@media (max-width: 768px) {
+  .theme-dropdown-advanced {
+    right: -20px;
+    min-width: 260px;
+    max-width: calc(100vw - 40px);
+  }
+}
+
+@media (max-width: 480px) {
+  .theme-dropdown-advanced {
+    right: -30px;
+    min-width: 240px;
+    max-width: calc(100vw - 20px);
+  }
 }

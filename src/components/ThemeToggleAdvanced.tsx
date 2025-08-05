@@ -224,13 +224,13 @@ const ThemeToggleAdvanced: React.FC = () => {
           data-current-theme={currentTheme}
           style={{ background: currentOption.gradient }}
         >
-          <span className="theme-icon">
+          <span className="theme-icon" style={{ color: 'white', filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5))' }}>
             {currentOption.icon}
           </span>
-          <span className="theme-label">
+          <span className="theme-label" style={{ color: 'white' }}>
             {currentOption.label}
           </span>
-          <span className="dropdown-arrow">
+          <span className="dropdown-arrow" style={{ color: 'white', filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5))' }}>
             <Palette size={12} />
           </span>
           

@@ -106,15 +106,21 @@ const Home: React.FC<HomeProps> = ({ onNavigate, onOpenQuickStart }) => {
         <div className="score-circle">
           <CircularProgress 
             score={todayEntry?.globalScore || 0}
-            size={140}
-            strokeWidth={10}
+            size={100}
+            strokeWidth={8}
             animationDuration={2000}
           />
-          <span className="score-label">Score Global</span>
+          <span className="score-label">Global</span>
         </div>
-        <p className="score-description">
-          {getScoreText(todayEntry?.globalScore || 0)}
-        </p>
+        <div className="score-info">
+          <h3 className="score-title">Score de Bien-être</h3>
+          <p className="score-subtitle">
+            {getScoreText(todayEntry?.globalScore || 0)}
+          </p>
+          <p className="score-description">
+            Évaluation basée sur {todayEntry?.pillars.length || 6} piliers de santé
+          </p>
+        </div>
       </div>      <div className="pillars-grid animate-slide-left">
         {todayEntry?.pillars.map((pillar, index) => (
           <div 
